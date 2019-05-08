@@ -36,4 +36,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //Un usuario puede tener muchas categorias
+    public function categorias()
+    {
+        return $this->hasMany('App\Category');
+    }
 }
