@@ -129,42 +129,5 @@
 		</div>
 	</div>
 </div>
-<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-		<div class="modal-header text-center">
-			<h4 class="modal-title w-100 font-weight-bold">Editar Recomendación</h4>
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
-		<div class="modal-body mx-3">
-			<div class="md-form mb-5">
-				<form action={{ url('formulario/'.$registro->id) }} method="POST">
-					{{ csrf_field() }}
-					@method('PUT')
-					<div class="form-group">
-						<label for="exampleInputEmail1">Identificador</label>
-						<input type="text" class="form-control" name="identificador">
-						<small id="id_version" class="form-text text-muted">We'll never share your email with anyone else.</small>
-					</div>
-					<div class="form-group">
-						<label for="exampleInputEmail1">Recomendación</label>
-						<input type="text" class="form-control" name="recomendacion">
-						<small id="id_recomendacion" class="form-text text-muted">We'll never share your email with anyone else.</small>
-					</div>
-					<!-- Display validation errors -->
-					@include('commons.errors')
-			</div>
-		</div>
-		<div class="modal-footer d-flex justify-content-center">
-			<button type="submit" class="btn btn-primary">Guardar</button>
-			</form>	
-		</div>
-		</div>
-	</div>
-</div>
-
-
         
 @endsection
