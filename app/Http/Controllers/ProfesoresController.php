@@ -9,7 +9,7 @@ class ProfesoresController extends Controller
 {
     public function index()
     {
-        $usuarios = User::all();
+        $usuarios = User::where('rol', '=', '1')->get();
         // dd($profesores);
         return view('panel.profesores.index', compact('usuarios'));
     }
@@ -32,6 +32,7 @@ class ProfesoresController extends Controller
         $profesor->name = $request->name;
         $profesor->email = $request->email;
         $profesor->password = $request->password;
+        $profesor->rol = 1;
         $profesor->save();
 
         return redirect('adminpanel/profesores/');
@@ -40,34 +41,31 @@ class ProfesoresController extends Controller
     public function edit($id)
     {
         // dd($id);
-        $profesor = Profesor::find($id);
-        return view('panel.profesores.edit', compact('profesor'));
+        $usuario = User::find($id);
+        return view('panel.profesores.edit', compact('usuario'));
     }
 
     public function update(Request $request, $id)
     {
         // dd($request);
         $this->validate($request, array(
-            'nombre' => 'required',
-            'grado' => 'required',
-            'year' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
         ));
 
-        $profesor = Profesor::find($id);
-        $profesor->nombre = $request->nombre;
-        $profesor->grado = $request->grado;
-        $profesor->year = $request->year;
+        $profesor = User::find($id);
+        $profesor->name = $request->name;
+        $profesor->email = $request->email;
+        $profesor->password = $request->password;
         $profesor->save();
 
-        return redirect()->route('panel.profesores.index');
+        return redirect('adminpanel/profesores/');
     }
 
     public function destroy($id)
     {   
-        $profesor = profesor::find($id);
-        $profesor->publicaciones()->detach();
-        $profesor->delete();
-
-        return redirect()->route('panel.profesores.index');
+        User::destroy($id);
+        return redirect('adminpanel/profesores/');
     }
 }

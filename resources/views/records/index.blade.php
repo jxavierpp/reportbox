@@ -28,7 +28,7 @@
 											<th scope="row">{{ $registro->version }}</th>
 											<td>{{ $registro->recomendacion }}</td>
 											<td>
-													@csrf
+												@csrf
 												<div class="btn-group" role="group" aria-label="Basic example">
 													<button class="btn btn-warning" type="button" title="Editar" onclick="window.location='{{ url('formulario/edit/'.$registro->id) }}';">
 														<i class="fas fa-pencil-alt"></i>

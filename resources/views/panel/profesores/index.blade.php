@@ -23,7 +23,20 @@
                             <td>{{ $usuario->name }}</td>
                             <td>{{ $usuario->email }}</td>
                             <td>la categoria</td>
-                            <td>sss
+                            <td>
+                                @csrf
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button class="btn btn-warning" type="button" title="Editar" onclick="window.location='{{ url('adminpanel/profesores/edit/'.$usuario->id) }}';">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </button>
+                                    <form action="{{ url('adminpanel/profesores/'.$usuario->id) }}" method="POST">
+                                        {{csrf_field()}}
+                                        {{ method_field('DELETE') }}
+                                        <button class="btn btn-danger" type="submit" title="Borrar">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+                                </div>
                                 {{-- <a href="{{ route("publicaciones.index1", $usuario->id) }}" class="btn btn-sm btn-success float-left" style="margin-right: 5px">Produccion Academica</span></a>
                                 <a href="{{ route("profesores.edit", $usuario->id) }}" class="btn btn-sm btn-info float-left" style="margin-right: 5px">Editar</span></a> --}}
                                 {{-- <div>
