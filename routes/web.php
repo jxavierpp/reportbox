@@ -19,4 +19,13 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/form', 'HomeController@FormIndex')->name('form');
+//Rutas del formulario
+Route::get('/formulario', 'FormularioController@index')->name('formulario');
+Route::post('/formulario/store', 'FormularioController@store');
+Route::get('/formulario/edit/{id}', 'FormularioController@edit');
+Route::put('/formulario/{id}', 'FormularioController@update');
+Route::delete('/formulario/{id}', 'FormularioController@destroy');
+
+
+Route::get('/formulario/edit_ap/{id}', 'FormularioController@edit_accion_planeada');
+Route::put('/formulario/store_ap/{id}', 'FormularioController@update_accion_planeada');

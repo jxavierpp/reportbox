@@ -16,6 +16,6 @@ class Category extends Model
     //Una categoria puede tener muchos registros
     public function registros()
     {
-        return $this->hasMany('App\Registry');
+        return $this->hasMany('App\Registry', 'categoria');
     }
 }

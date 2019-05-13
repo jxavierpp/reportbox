@@ -25,9 +25,6 @@ class HomeController extends Controller
     {
         return view('home');
     }
-    public function FormIndex()
-    {
-        return view('records.index');
-    }
+    
 
 }

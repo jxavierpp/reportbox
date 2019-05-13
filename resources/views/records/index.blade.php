@@ -3,11 +3,7 @@
 @section('content')
 <div class="container">
 	<div class="row">
-		<div class="col-md-10 offset-md-1">
-
-			<!-- New task form -->
-			{{-- <form action="{{ url('tasks') }}" method="POST"> --}}
-				
+		<div class="col-md-10 offset-md-1 pb-5">
 			<div class="card ">
 				<h5 class="card-header">Categoria</h5>
 
@@ -15,20 +11,9 @@
 					<div class="card mb-3">
 						<h5 class="card-header">Recomendaciones</h5>
 						<div class="card-body">
-							<form action="/" method="POST">
-								{{ csrf_field() }}
-								<div class="form-group">
-									<div class="input-group mb-3">
-										<input type="text" class="form-control" placeholder="Nueva Recomendación" aria-label="Username" aria-describedby="basic-addon1">
-										<div class="input-group-append">
-											<button class="btn btn-primary" type="submit">Agregar Recomendación</button>
-										</div>
-									</div>
-								</div>
-								<!-- Display validation errors -->
-								@include('commons.errors')
-							</form>	
-								
+							<div class="pb-2">
+								<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalCreate">Agregar Recomendación</button>
+							</div>
 							<table class="table table-striped">
 								<thead>
 									<tr>
@@ -38,30 +23,27 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<th scope="row">1.3.4</th>
-										<td>Los escucsados estan muy sucios, se recomiendo limpiarlos</td>
-										<td>
-											<button class="btn btn-warning" type="submit" aria-label="Undone" title="Editar">
-												<i class="fas fa-pencil-alt"></i>
-											</button>
-											<button class="btn btn-danger" type="submit" aria-label="Undone" title="Borrar">
-												<i class="fas fa-trash-alt"></i>
-											</button>
-										</td>
-									</tr>
-									<tr>
-										<th scope="row">1.3.5</th>
-										<td>Se recomienda un nuevo logotipo para la carrera</td>
-										<td>
-											<button class="btn btn-warning" type="submit" aria-label="Undone" title="Editar">
-												<i class="fas fa-pencil-alt"></i>
-											</button>
-											<button class="btn btn-danger" type="submit" aria-label="Undone" title="Borrar">
-												<i class="fas fa-trash-alt"></i>
-											</button>
-										</td>
-									</tr>
+									@foreach($registros as $registro)
+										<tr>
+											<th scope="row">{{ $registro->version }}</th>
+											<td>{{ $registro->recomendacion }}</td>
+											<td>
+													@csrf
+												<div class="btn-group" role="group" aria-label="Basic example">
+													<button class="btn btn-warning" type="button" title="Editar" onclick="window.location='{{ url('formulario/edit/'.$registro->id) }}';">
+														<i class="fas fa-pencil-alt"></i>
+													</button>
+													<form action="{{ url('formulario/'.$registro->id) }}" method="POST">
+														{{csrf_field()}}
+														{{ method_field('DELETE') }}
+														<button class="btn btn-danger" type="submit" title="Borrar">
+															<i class="fas fa-trash-alt"></i>
+														</button>
+													</form>
+												</div>
+											</td>
+										</tr>
+									@endforeach
 								</tbody>
 							</table>
 						</div>
@@ -79,46 +61,110 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<th scope="row">1.3.4</th>
-										<td>Se contratara personal para la limpieza de las areas baños.</td>
-										<td>6 meses</td>
-										<td>
-											<button class="btn btn-warning" type="submit" aria-label="Undone" title="Editar">
-												<i class="fas fa-pencil-alt"></i>
-											</button>
-											<button class="btn btn-danger" type="submit" aria-label="Undone" title="Borrar">
-												<i class="fas fa-trash-alt"></i>
-											</button>
-										</td>
-									</tr>
-									<tr>
-										<th scope="row">1.3.5</th>
-										<td>Se propondra un concurso para la eleccion del nuevo logotipo de la carrera</td>
-										<td>9 meses</td>
-										<td>
-											<button class="btn btn-warning" type="submit" aria-label="Undone" title="Editar">
-												<i class="fas fa-pencil-alt"></i>
-											</button>
-											<button class="btn btn-danger" type="submit" aria-label="Undone" title="Borrar">
-												<i class="fas fa-trash-alt"></i>
-											</button>
-										</td>
-									</tr>
+									@foreach($registros as $registro)
+										<tr>
+											<th scope="row">{{ $registro->version }}</th>
+											<td>{{ $registro->accion_planeada }}</td>
+											<td>{{ $registro->duracion }} Meses</td>
+											<td>
+												@csrf
+												<div class="btn-group" role="group" aria-label="Basic example">
+													<button class="btn btn-warning" type="button" title="Editar" onclick="window.location='{{ url('formulario/edit_ap/'.$registro->id) }}';">
+														<i class="fas fa-pencil-alt"></i>
+													</button>
+													<form action="{{ url('formulario/'.$registro->id) }}" method="POST">
+														{{csrf_field()}}
+														{{ method_field('DELETE') }}
+														<button class="btn btn-danger" type="submit" title="Borrar">
+															<i class="fas fa-trash-alt"></i>
+														</button>
+													</form>
+												</div>
+											</td>
+										</tr>
+									@endforeach
 								</tbody>
 							</table>
 						</div>
 						
 					</div>
 				</div>
-				<div class="card-footer text-muted">
-					<button type="button" class="btn btn-primary">Guardar</button>
-					<button type="button" class="btn btn-secondary">Cancelar</button>
-				</div>
-
 			</div>
-			
 		</div>
 	</div>
 </div>
+
+<div class="modal fade" id="modalCreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+		<div class="modal-header text-center">
+			<h4 class="modal-title w-100 font-weight-bold">Nueva Recomendación</h4>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body mx-3">
+			<div class="md-form mb-5">
+				<form action="/formulario/store" method="POST">
+					{{ csrf_field() }}
+					<div class="form-group">
+						<label for="exampleInputEmail1">Identificador</label>
+						<input type="text" class="form-control" name="identificador">
+						<small id="id_version" class="form-text text-muted">We'll never share your email with anyone else.</small>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputEmail1">Recomendación</label>
+						<input type="text" class="form-control" name="recomendacion">
+						<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+					</div>
+					<!-- Display validation errors -->
+					@include('commons.errors')
+			</div>
+
+		</div>
+		<div class="modal-footer d-flex justify-content-center">
+			<button type="submit" class="btn btn-primary">Guardar</button>
+			</form>	
+		</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+		<div class="modal-header text-center">
+			<h4 class="modal-title w-100 font-weight-bold">Editar Recomendación</h4>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body mx-3">
+			<div class="md-form mb-5">
+				<form action={{ url('formulario/'.$registro->id) }} method="POST">
+					{{ csrf_field() }}
+					@method('PUT')
+					<div class="form-group">
+						<label for="exampleInputEmail1">Identificador</label>
+						<input type="text" class="form-control" name="identificador">
+						<small id="id_version" class="form-text text-muted">We'll never share your email with anyone else.</small>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputEmail1">Recomendación</label>
+						<input type="text" class="form-control" name="recomendacion">
+						<small id="id_recomendacion" class="form-text text-muted">We'll never share your email with anyone else.</small>
+					</div>
+					<!-- Display validation errors -->
+					@include('commons.errors')
+			</div>
+		</div>
+		<div class="modal-footer d-flex justify-content-center">
+			<button type="submit" class="btn btn-primary">Guardar</button>
+			</form>	
+		</div>
+		</div>
+	</div>
+</div>
+
+
+        
 @endsection

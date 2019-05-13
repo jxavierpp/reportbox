@@ -38,8 +38,8 @@ class User extends Authenticatable
     ];
 
     //Un usuario puede tener muchas categorias
-    public function categorias()
+    public function categoria()
     {
-        return $this->hasMany('App\Category');
+        return $this->hasOne('App\Category', 'encargado');
     }
 }

@@ -16,9 +16,9 @@ class CreateRegistriesTable extends Migration
         Schema::create('registries', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('recomendacion', 100);
-            $table->text('accion_planeada');
+            $table->text('accion_planeada')->nullable();
             $table->string('version', 20);
-            $table->integer('duracion');
+            $table->integer('duracion')->nullable();
             $table->bigInteger('categoria')->unsigned();
             $table->foreign('categoria')->references('id')->on('categories');
             $table->timestamps();
