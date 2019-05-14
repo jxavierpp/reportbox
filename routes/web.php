@@ -38,3 +38,13 @@ Route::get('/adminpanel/profesores/edit/{id}', 'profesoresController@edit');
 Route::post('/adminpanel/profesores/store', 'profesoresController@store');
 Route::put('/adminpanel/profesores/{id}', 'profesoresController@update');
 Route::delete('/adminpanel/profesores/{id}', 'profesoresController@destroy');
+
+Route::get('/adminpanel/formulario/{id}', 'FormularioController@index2');
+Route::post('/adminpanel/formulario/store', 'FormularioController@store2');
+Route::get('/adminpanel/formulario/edit/{id}', 'FormularioController@edit2');
+Route::put('/adminpanel/formulario/{id}', 'FormularioController@update2');
+Route::delete('/adminpanel/formulario/{id}', 'FormularioController@destroy2');
+
+// Rutad del formulario para las acciones planeadas
+Route::get('/adminpanel/formulario/edit_ap2/{id}', 'FormularioController@edit_accion_planeada2');
+Route::put('/adminpanel/formulario/store_ap2/{id}', 'FormularioController@update_accion_planeada2');
