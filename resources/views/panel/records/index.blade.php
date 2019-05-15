@@ -1,11 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.app_admin')
 
 @section('content')
 <div class="container">
 	<div class="row">
-		<div class="col-md-10 offset-md-1 pb-5">
-			<div class="card ">
-				<h5 class="card-header">Categoria</h5>
+		<div class="col-md-12 pb-3 pt-3">
+			<div class="card">
+				<h5 class="card-header">Categoria - {{ $categoria->name }}</h5>
 				<div class="card-body">
 					<div class="card mb-3">
 						<h5 class="card-header">Recomendaciones</h5>
@@ -30,7 +30,7 @@
 												<td>
 													@csrf
 													<div class="btn-group" role="group" aria-label="Basic example">
-														<button class="btn btn-warning" type="button" title="Editar" onclick="window.location='{{ url('formulario/edit/'.$registro->id) }}';">
+														<button class="btn btn-warning" type="button" title="Editar" onclick="window.location='{{ url('adminpanel/formulario/edit/'.$registro->id) }}';">
 															<i class="fas fa-pencil-alt"></i>
 														</button>
 														<form action="{{ url('formulario/'.$registro->id) }}" method="POST">
@@ -45,7 +45,7 @@
 											</tr>
 										@endforeach
 									</tbody>
-								</table>
+								</table> 
 							@else
 								<div class="alert alert-warning" role="alert">
 									No hay Recomendaciones para mostrar.
@@ -75,7 +75,7 @@
 												<td>
 													@csrf
 													<div class="btn-group" role="group" aria-label="Basic example">
-														<button class="btn btn-warning" type="button" title="Editar" onclick="window.location='{{ url('formulario/edit_ap/'.$registro->id) }}';">
+														<button class="btn btn-warning" type="button" title="Editar" onclick="window.location='{{ url('adminpanel/formulario/edit_ap2/'.$registro->id) }}';">
 															<i class="fas fa-pencil-alt"></i>
 														</button>
 														<form action="{{ url('formulario/'.$registro->id) }}" method="POST">
@@ -115,7 +115,7 @@
 		</div>
 		<div class="modal-body mx-3">
 			<div class="md-form mb-5">
-				<form action="/formulario/store" method="POST">
+				<form action="/adminpanel/formulario/store" method="POST">
 					{{ csrf_field() }}
 					<div class="form-group">
 						<label for="exampleInputEmail1">Identificador</label>
@@ -127,6 +127,7 @@
 						<input type="text" class="form-control" name="recomendacion">
 						<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 					</div>
+					<input name="categoria_id" type="hidden" value="{{ Request()->id }}">
 					<!-- Display validation errors -->
 					@include('commons.errors')
 			</div>
@@ -141,3 +142,18 @@
 </div>
         
 @endsection
+
+{{-- @section('javascript')
+	<script>
+		$(document).ready({
+			fetch('http://reportbox.test/api/categorias')
+			.then(function(response) {
+				console.log(response.json());
+			})
+			.then(function(myJson) {
+				console.log(myJson);
+			});
+		});
+		
+	</script>
+@endsection --}}

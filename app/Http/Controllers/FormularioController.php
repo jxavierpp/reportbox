@@ -94,4 +94,73 @@ class FormularioController extends Controller
         Registry::destroy($id);
         return back();
     }
+
+    // PARA EL PANEL DE ADMINISTRADOR
+    public function index2($categoria_id)
+    {
+        try {
+            $categoria = Category::find($categoria_id);
+            $registros = $categoria->registros()->get();
+
+            return view('panel.records.index', ['registros' => $registros, 'categoria' => $categoria]);
+        } catch (\Throwable $th) {
+            dd($th);
+        }
+    }
+
+    public function store2(Request $request)
+    {
+        $categoria = Category::find($request->categoria_id);
+
+        $registro = new Registry();
+        $registro->recomendacion = $request->recomendacion;
+        $registro->version = $request->identificador;
+        $registro->accion_planeada = "En espera de ser capturado.";
+        $registro->duracion = 0;
+        $registro->categoria = $request->categoria_id;
+        $registro->save();
+        return back();
+    }
+
+    public function edit2($id)
+    {
+        // dd($id);
+        $registro = Registry::find($id);
+        return view('panel.records.edit', compact('registro'));
+    }
+    
+    public function update2(Request $request, $id)
+    {
+        $registro = Registry::find($id);
+        $registro->recomendacion = $request->recomendacion;
+        $registro->version = $request->identificador;
+        $registro->save();
+        
+        return redirect('adminpanel/formulario/'.$registro->categoria);
+    }
+
+    public function edit_accion_planeada2($id)
+    {
+        // dd($id);
+        $registro = Registry::find($id);
+        return view('panel.records.edit_accion_planeada', compact('registro'));
+    }
+
+    public function update_accion_planeada2(Request $request, $id)
+    {
+        $registro = Registry::find($id);
+        $registro->accion_planeada = $request->accion_planeada;
+        $registro->duracion = $request->duracion;
+        $registro->save();
+        
+        return redirect('adminpanel/formulario/'.$registro->categoria);
+    }
+
+    public function destroy2($id)
+    {
+        Registry::destroy($id);
+        return back();
+    }
+
+    
 }

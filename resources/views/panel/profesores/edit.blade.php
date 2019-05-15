@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app_admin')
 
 @section('content')
     <div id="content">
@@ -10,19 +10,19 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <form action={{ url('formulario/'.$registro->id) }} method="POST">
+                        <form action={{ url('/adminpanel/profesores/'.$usuario->id) }} method="POST">
                             {{ csrf_field() }}
                             @method('PUT')
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Nombre</label>
-                                <input type="text" class="form-control" name="nombre" value="{{ $usuario->nombre }}">
+                                <input type="text" class="form-control" name="name" value="{{ $usuario->name }}">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Email</label>
                                 <input type="text" class="form-control" name="email" value="{{ $usuario->email }}">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Email</label>
+                                <label for="exampleInputEmail1">Contrasena</label>
                                 <input type="password" class="form-control" name="password">
                             </div>
                             <!-- Display validation errors -->
