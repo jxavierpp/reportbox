@@ -49,7 +49,7 @@
 							@else
 								<div class="alert alert-warning" role="alert">
 									No hay Recomendaciones para mostrar.
-								</div>
+								</div> 
 							@endif
 						</div>
 					</div>
@@ -94,7 +94,7 @@
 							@else
 								<div class="alert alert-warning" role="alert">
 									No hay Planes de Accion para mostrar.
-								</div>
+								</div> 
 							@endif
 						</div>
 					</div>
@@ -134,11 +134,10 @@
 		</div>
 		<div class="modal-footer d-flex justify-content-center">
 			<button type="submit" class="btn btn-primary">Guardar</button>
-			</form>
+			</form>	
 		</div>
 		</div>
 	</div>
-
 </div>
-
+        
 @endsection
