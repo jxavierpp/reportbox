@@ -4,7 +4,6 @@
     </div>
 
     <ul class="list-unstyled components">
-        <p>Navegacion</p>
         <li><a href="/adminpanel/profesores">Profesores</a></li>
         <li><a href="/adminpanel/reportes">Reportes</a></li>
         <li class="active">
