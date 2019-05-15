@@ -28,7 +28,7 @@ class CreateCategoriesTable extends Migration
             ['name' => 'Plan de Estudios'],
             ['name' => 'Evaluacion del Aprendizaje'],
             ['name' => 'Formacion Integral'],
-            ['name' => 'Servicion de Apoyo para el Aprendizaje'],
+            ['name' => 'Servicios de Apoyo para el Aprendizaje'],
             ['name' => 'Vinculacion_Extension'],
             ['name' => 'Investigacion'],
             ['name' => 'Infraestrutura y Equipamiento'],
