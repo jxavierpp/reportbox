@@ -26,11 +26,10 @@ class HomeController extends Controller
         return view('home');
     }
 
-    // Borrar?
-    // public function index_panel()
-    // {
-    //     return view('panel.index');
-    // }
+    public function index_panel()
+    {
+        return view('panel.index');
+    }
     
 
 }
