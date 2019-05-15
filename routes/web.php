@@ -31,10 +31,14 @@ Route::get('/formulario/edit_ap/{id}', 'FormularioController@edit_accion_planead
 Route::put('/formulario/store_ap/{id}', 'FormularioController@update_accion_planeada');
 
 //Rutas del panel de administrador
-Route::get('/adminpanel', 'HomeController@index_panel')->name('panel');
+// Route::get('/adminpanel', 'HomeController@index_panel')->name('panel');
+Route::get('/adminpanel', 'CategoryController@index')->name('panel');
+
 Route::get('/adminpanel/profesores', 'profesoresController@index');
 Route::get('/adminpanel/profesores/create', 'profesoresController@create');
 Route::get('/adminpanel/profesores/edit/{id}', 'profesoresController@edit');
 Route::post('/adminpanel/profesores/store', 'profesoresController@store');
 Route::put('/adminpanel/profesores/{id}', 'profesoresController@update');
 Route::delete('/adminpanel/profesores/{id}', 'profesoresController@destroy');
+
+ Route::resource('categories', 'CategoryController');
