@@ -50,3 +50,7 @@ Route::delete('/adminpanel/formulario/{id}', 'FormularioController@destroy2');
 // Rutad del formulario para las acciones planeadas
 Route::get('/adminpanel/formulario/edit_ap2/{id}', 'FormularioController@edit_accion_planeada2');
 Route::put('/adminpanel/formulario/store_ap2/{id}', 'FormularioController@update_accion_planeada2');
+
+//Rutas para la generacion de reportes en PDF
+Route::get('/adminpanel/reportes', 'ViewsController@index'); //Vista general de todos los reportes generados
+Route::get('generatepdf', 'ViewsController@generatepdf');
