@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
     <head>
         @include('partials.header')
@@ -6,7 +6,7 @@
           /*
             DEMO STYLE
             */
-            :root, body, .wrapper {
+            body, .wrapper {
                 height: 100%;
             }
             @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";

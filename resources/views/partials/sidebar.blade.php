@@ -4,9 +4,10 @@
     </div>
 
     <ul class="list-unstyled components">
-        <p>Navegacion</p>
         <li><a href="/adminpanel/profesores">Profesores</a></li>
         <li><a href="/adminpanel/reportes">Reportes</a></li>
+        <li><a href="/adminpanel/encargados">Encargados</a></li>
+
         <li class="active">
             <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Categorias</a>
             <ul class="collapse list-unstyled" id="homeSubmenu">
@@ -26,7 +27,7 @@
 </nav>
 
 <script>
-    fetch('http://reportbox.test/api/categorias')
+    fetch('http://127.0.0.1:8000/api/categorias')
     .then(response => response.json())
     .then(data => {
         console.log(data) // Prints result from `response.json()` in getRequest
