@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 //Rutas del formulario para las recomendaciones
 Route::get('/formulario', 'FormularioController@index')->name('formulario');
