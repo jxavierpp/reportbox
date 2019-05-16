@@ -10,9 +10,6 @@
 					<div class="card mb-3">
 						<h5 class="card-header">Recomendaciones</h5>
 						<div class="card-body">
-							<div class="pb-2">
-								<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalCreate">Agregar Recomendación</button>
-							</div>
 							@if(!($registros->isEmpty()))
 								<table class="table table-striped">
 									<thead>
@@ -45,11 +42,15 @@
 											</tr>
 										@endforeach
 									</tbody>
+							</div>
 								</table>
+								<div class="pb-2">
+										<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalCreate">Agregar Recomendación</button>
+								</div>
 							@else
 								<div class="alert alert-warning" role="alert">
 									No hay Recomendaciones para mostrar.
-								</div> 
+								</div>
 							@endif
 						</div>
 					</div>
@@ -91,10 +92,15 @@
 										@endforeach
 									</tbody>
 								</table>
+								<div class="pb-2">
+									<a href="{{ URL::to('generatepdf/') }}">
+                    					<button type="button" class="btn btn-sm btn-primary float-right">Generar reporte</button>
+                					</a>
+                				</div>
 							@else
 								<div class="alert alert-warning" role="alert">
 									No hay Planes de Accion para mostrar.
-								</div> 
+								</div>
 							@endif
 						</div>
 					</div>
@@ -120,24 +126,21 @@
 					<div class="form-group">
 						<label for="exampleInputEmail1">Identificador</label>
 						<input type="text" class="form-control" name="identificador">
-						<small id="id_version" class="form-text text-muted">We'll never share your email with anyone else.</small>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Recomendación</label>
 						<input type="text" class="form-control" name="recomendacion">
-						<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 					</div>
-					<!-- Display validation errors -->
 					@include('commons.errors')
 			</div>
 
 		</div>
 		<div class="modal-footer d-flex justify-content-center">
 			<button type="submit" class="btn btn-primary">Guardar</button>
-			</form>	
+			</form>
 		</div>
 		</div>
 	</div>
 </div>
-        
+
 @endsection
