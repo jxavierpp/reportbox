@@ -18,8 +18,9 @@ class CategoryController extends Controller
     {
         //'categories.id as idCategory',
         $categoriesInfo = DB::table('categories')
-        ->select('categories.id as idCategory', 'categories.name as categoryName', 'users.name as userName')
-        ->join('users', 'categories.encargado', '=', 'users.id')
+        ->select('categories.id as idCategory', 'categories.name as categoryName',
+         'users.name as userName')
+        ->leftJoin('users', 'categories.encargado', '=', 'users.id')
         ->get();
 
         return view('panel.index', compact('categoriesInfo'));

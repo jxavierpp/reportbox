@@ -42,7 +42,9 @@ Route::put('/adminpanel/profesores/{id}', 'profesoresController@update');
 Route::delete('/adminpanel/profesores/{id}', 'profesoresController@destroy');
 
 
- Route::resource('categories', 'CategoryController');
+//Route::resource('/adminpanel/encargados', 'CategoryController');
+//Route::resource('categories', 'CategoryController');
+Route::get('/adminpanel/encargados/', 'CategoryController@index');
 Route::get('/adminpanel/formulario/{id}', 'FormularioController@index2');
 Route::post('/adminpanel/formulario/store', 'FormularioController@store2');
 Route::get('/adminpanel/formulario/edit/{id}', 'FormularioController@edit2');
