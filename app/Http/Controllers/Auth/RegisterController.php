@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/adminpanel';
+    protected $redirectTo = '/adminpanel/profesores';
 
     /**
      * Create a new controller instance.
@@ -52,6 +52,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255', 'alpha_spaces'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed', 'alpha_dash'],
+            'categoria' => ['required'],
         ]);
     }
 
@@ -63,6 +64,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        //$categoria = $data->user()->categoria()->first();
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
