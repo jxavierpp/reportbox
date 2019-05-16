@@ -33,14 +33,12 @@ Route::put('/formulario/store_ap/{id}', 'FormularioController@update_accion_plan
 //Rutas del panel de administrador
 // Route::get('/adminpanel', 'HomeController@index_panel')->name('panel');
 Route::get('/adminpanel', 'CategoryController@index')->name('panel');
-
 Route::get('/adminpanel/profesores', 'profesoresController@index');
 Route::get('/adminpanel/profesores/create', 'profesoresController@create');
 Route::get('/adminpanel/profesores/edit/{id}', 'profesoresController@edit');
 Route::post('/adminpanel/profesores/store', 'profesoresController@store');
 Route::put('/adminpanel/profesores/{id}', 'profesoresController@update');
 Route::delete('/adminpanel/profesores/{id}', 'profesoresController@destroy');
-
 
 //Route::resource('/adminpanel/encargados', 'CategoryController');
 //Route::resource('categories', 'CategoryController');
@@ -55,3 +53,6 @@ Route::delete('/adminpanel/formulario/{id}', 'FormularioController@destroy2');
 Route::get('/adminpanel/formulario/edit_ap2/{id}', 'FormularioController@edit_accion_planeada2');
 Route::put('/adminpanel/formulario/store_ap2/{id}', 'FormularioController@update_accion_planeada2');
 
+//Rutas para la generacion de reportes en PDF
+Route::get('/adminpanel/reportes', 'ViewsController@index'); //Vista general de todos los reportes generados
+Route::get('generatepdf', 'ViewsController@generatepdf');
