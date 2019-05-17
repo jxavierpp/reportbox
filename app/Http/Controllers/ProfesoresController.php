@@ -25,7 +25,6 @@ class ProfesoresController extends Controller
     public function create()
     {
         $categorias = DB::table('categories')->select('id', 'name')->get();
-
         return view('panel.profesores.create', compact('categorias'));
     }
 
