@@ -55,3 +55,7 @@ Route::middleware(['isProfesor'])->group(function () {
     Route::put('/formulario/store_ap/{id}', 'FormularioController@update_accion_planeada');
 
 });
+
+//Rutas para subir archivos
+Route::get('file/{id}', 'FileController@index');
+Route::post('file/store', 'FileController@store')->name('file.store');

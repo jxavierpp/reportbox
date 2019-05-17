@@ -8,7 +8,7 @@
 				<h5 class="card-header">Editar Accion Planeada</h5>
 
 				<div class="card-body">
-                    <form action={{ url('formulario/store_ap/'.$registro->id) }} method="POST">
+                    <form action={{ url('formulario/store_ap/'.$registro->id) }} method="POST" enctype="multipart/form/data">
                         {{ csrf_field() }}
                         @method('PUT')
                         <div class="form-group">

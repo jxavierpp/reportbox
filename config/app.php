@@ -162,6 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Barryvdh\domPDF\ServiceProvider::class,
+        Styde\Html\HtmlServiceProvider::class,
 
         /*
          * Package Service Providers...
