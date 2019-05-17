@@ -1,16 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
     return redirect('login');
 });
@@ -32,7 +21,7 @@ Route::put('/formulario/store_ap/{id}', 'FormularioController@update_accion_plan
 
 //Rutas del panel de administrador
 // Route::get('/adminpanel', 'HomeController@index_panel')->name('panel');
-Route::get('/adminpanel', 'CategoryController@index')->name('panel');
+Route::get('/adminpanel', 'CategoryController@index')->middleware('guest');
 Route::get('/adminpanel/profesores', 'profesoresController@index');
 Route::get('/adminpanel/profesores/create', 'profesoresController@create');
 Route::get('/adminpanel/profesores/edit/{id}', 'profesoresController@edit');

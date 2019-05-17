@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Categoty;
 use Illuminate\Http\Request;
 
 class ProfesoresController extends Controller
@@ -16,7 +17,8 @@ class ProfesoresController extends Controller
 
     public function create()
     {
-        return view('panel.profesores.create');
+        $categorias = Categoty::all();
+        return view('panel.profesores.create', $categorias);
     }
 
     public function store(Request $request)

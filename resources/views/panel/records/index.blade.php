@@ -142,18 +142,3 @@
 </div>
         
 @endsection
-
-{{-- @section('javascript')
-	<script>
-		$(document).ready({
-			fetch('http://reportbox.test/api/categorias')
-			.then(function(response) {
-				console.log(response.json());
-			})
-			.then(function(myJson) {
-				console.log(myJson);
-			});
-		});
-		
-	</script>
-@endsection --}}

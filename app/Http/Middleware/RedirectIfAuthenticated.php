@@ -17,8 +17,16 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->check()) {
-            return redirect('/formulario');
+        
+        // if (Auth::guard($guard)->check()) {
+        //     if(Auth::user()->rol == 0){
+        //         return redirect('/adminpanel');
+        //     } 
+        //     return redirect('/formulario');
+        // }
+        if ( !$this->auth->user() )
+        {
+            return redirect('/login');
         }
 
         return $next($request);
