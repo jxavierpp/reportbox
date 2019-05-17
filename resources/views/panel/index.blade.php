@@ -24,11 +24,18 @@
                     @foreach ($categoriesInfo as $info)
                         <tr>
                             <td>{{$info->categoryName}}</td>
-                            <td>{{$info->userName}}</td>
+
+                            @if($info->userName != null)
+                                <td>{{$info->userName}}</td>
+                            @else
+                                <td>Sin asignar</td>
+                            @endif
+
                             <td>
-                                <button class="btn btn-warning" type="button" title="Editar"
-                                {{-- onclick="window.location='{{ route('categories.index') }}';"> --}}
-                                 <i class="fas fa-pencil-alt"></i>
+                                <button class="btn btn-warning" type="button" 
+                                title="Editar" 
+                                onclick="window.location='{{ url('adminpanel/encargados/edit/'.$info->userID) }}';">
+                                    <i class="fas fa-pencil-alt"></i>
                                 </button>
                             </td>
                         </tr>

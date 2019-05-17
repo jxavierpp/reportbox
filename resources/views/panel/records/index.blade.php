@@ -127,7 +127,7 @@
 						<input type="text" class="form-control" name="recomendacion">
 						<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 					</div>
-					<input name="categoria_id" type="hidden" value="{{ Request()->id }}">
+					<input name="categoria_id" type="text" value="{{ Request()->id }}">
 					<!-- Display validation errors -->
 					@include('commons.errors')
 			</div>

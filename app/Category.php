@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
+
+    protected $fillable = ['encargado'];
     //Una categoria pertenece a un usuario
     public function usuario()
     {

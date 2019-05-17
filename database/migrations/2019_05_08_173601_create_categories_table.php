@@ -18,21 +18,21 @@ class CreateCategoriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name', 100);
             $table->bigInteger('encargado')->unsigned()->nullable();
-            $table->foreign('encargado')->references('id')->on('users');
+            $table->foreign('encargado')->references('id')->on('users')->onDelete("cascade");
             $table->timestamps();
         });
 
         DB::table('categories')->insert([
-            ['name' => 'Personal Academico'],
+            ['name' => 'Personal Académico'],
             ['name' => 'Estudiantes'],
             ['name' => 'Plan de Estudios'],
-            ['name' => 'Evaluacion del Aprendizaje'],
-            ['name' => 'Formacion Integral'],
+            ['name' => 'Evaluación del Aprendizaje'],
+            ['name' => 'Formación Integral'],
             ['name' => 'Servicios de Apoyo para el Aprendizaje'],
-            ['name' => 'Vinculacion_Extension'],
-            ['name' => 'Investigacion'],
+            ['name' => 'Vinculación-Extensión'],
+            ['name' => 'Investigación'],
             ['name' => 'Infraestrutura y Equipamiento'],
-            ['name' => 'Gestion Administrativa y Financiacion']
+            ['name' => 'Gestión Administrativa y Financiación']
         ]);
 
     }//End method up

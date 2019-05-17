@@ -13,20 +13,31 @@
                         <form action={{ url('/adminpanel/profesores/'.$usuario->id) }} method="POST">
                             {{ csrf_field() }}
                             @method('PUT')
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Nombre</label>
-                                <input type="text" class="form-control" name="name" value="{{ $usuario->name }}">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Email</label>
-                                <input type="text" class="form-control" name="email" value="{{ $usuario->email }}">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Contrasena</label>
-                                <input type="password" class="form-control" name="password">
-                            </div>
-                            <!-- Display validation errors -->
-                            @include('commons.errors')
+                            <label class="form-group">{{ __('Nombre') }}</label>
+                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                        @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    <label for="email" class="form-group">{{ __('Correo Electrónico') }}</label>
+                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+
+                    <label for="password" class="form-group">{{ __('Contraseña') }}</label>
+                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+
                     </div>
                 </div>
             </div>

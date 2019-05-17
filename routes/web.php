@@ -20,6 +20,11 @@ Route::middleware(['isAdmin'])->group(function () {
     //CRUD Categorias
     Route::get('/adminpanel/encargados/', 'CategoryController@index');
     
+    //Encargados
+    Route::put('/adminpanel/encargados/{id}', 'CategoryController@update');
+    Route::get('/adminpanel/encargados/edit/{id}', 'CategoryController@edit');
+    Route::get('/adminpanel/encargados/', 'CategoryController@index')->name('encargados');
+
     //CRUD de recomendaciones del formulario
     Route::get('/adminpanel/formulario/{id}', 'FormularioController@index2');
     Route::post('/adminpanel/formulario/store', 'FormularioController@store2');
@@ -50,4 +55,3 @@ Route::middleware(['isProfesor'])->group(function () {
     Route::put('/formulario/store_ap/{id}', 'FormularioController@update_accion_planeada');
 
 });
-

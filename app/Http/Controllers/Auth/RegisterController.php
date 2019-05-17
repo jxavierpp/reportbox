@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -56,6 +57,16 @@ class RegisterController extends Controller
         ]);
     }
 
+    protected function index(array $data)
+    {
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255', 'alpha_spaces'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed', 'alpha_dash'],
+            'categoria' => ['required'],
+        ]);
+    }
+
     /**
      * Create a new user instance after a valid registration.
      *
@@ -64,12 +75,32 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        //$categoria = $data->user()->categoria()->first();
+    //    $usuario = new User();
+    //    $usuario->name = $data['name'];
+    //    $usuario->email = $data['email'];
+    //    $usuario->password = Hash::make($data['password']);
+    // //   $usuario->save();
+    //    return back();
 
-        return User::create([
+    //    $categoria = Category::find($request->categoria_id);
+
+    //    $categoria = new Category();
+
+        
+
+        $usuario = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        $users_id = User::where('id', '2')->get();
+
+        $categoria = new Category();
+
+        $categoria->encargado = $users_id;
+        $categoria->save();
+
+        return $usuario;
     }
 }

@@ -5,7 +5,7 @@
         <div class="card">
             <div class="card-header">
                 <h4 style="position: absolute;"><strong>Lista de Profesores</strong></h4>
-                <a href="{{ URL::to('register') }}">
+                <a href="{{ URL::to('adminpanel/profesores/create') }}">
                     <button type="button" class="btn btn-sm btn-primary float-right">Registrar Profesor</button>
                 </a>
             </div>
@@ -18,18 +18,24 @@
                         <th>Categoria Asignada</th>
                         <th>Acciones</th>
                     </tr>
-                    @foreach ($usuarios as $usuario)
+                    @foreach ($usersInfo as $usuario)
                         <tr>
-                            <td>{{ $usuario->name }}</td>
-                            <td>{{ $usuario->email }}</td>
-                            <td>la categoria</td>
+                            <td>{{ $usuario->userName }}</td>
+                            <td>{{ $usuario->userEmail }}</td>
+                            <td> <?php if($usuario->categoryName == "")
+                                echo "Sin Asignar";
+                            else ?> {{$usuario->categoryName}}
+                            
+                            </td>
+
+                            
                             <td>
                                 @csrf
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                    <button class="btn btn-warning" type="button" title="Editar" onclick="window.location='{{ url('adminpanel/profesores/edit/'.$usuario->id) }}';">
+                                    <button class="btn btn-warning" type="button" title="Editar" onclick="window.location='{{ url('adminpanel/profesores/edit/'.$usuario->userId) }}';">
                                         <i class="fas fa-pencil-alt"></i>
                                     </button>
-                                    <form action="{{ url('adminpanel/profesores/'.$usuario->id) }}" method="POST">
+                                    <form action="{{ url('adminpanel/profesores/'.$usuario->userId) }}" method="POST">
                                         {{csrf_field()}}
                                         {{ method_field('DELETE') }}
                                         <button class="btn btn-danger" type="submit" title="Borrar">
