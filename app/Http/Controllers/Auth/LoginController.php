@@ -27,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/formulario';
+    // protected $redirectTo = '/formulario';
 
     /**
      * Create a new controller instance.
@@ -37,13 +37,5 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-    }
-
-    protected function authenticated(Request $request, $user)
-    {
-        if(Auth::user()->rol == 0){
-            return redirect('/adminpanel');
-        } 
-        return redirect('/formulario');
     }
 }
