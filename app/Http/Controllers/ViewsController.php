@@ -10,6 +10,7 @@ class ViewsController extends Controller
     {
         return view('panel.reportes.index');
     }
+    
     public function generatePDF()
     {
     	$datos = \DB::table('registries')->select(['id', 'recomendacion', 'accion_planeada', 'version', 'duracion', 'categoria'])->get();

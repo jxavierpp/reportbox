@@ -33,7 +33,7 @@
 														<button class="btn btn-warning" type="button" title="Editar" onclick="window.location='{{ url('adminpanel/formulario/edit/'.$registro->id) }}';">
 															<i class="fas fa-pencil-alt"></i>
 														</button>
-														<form action="{{ url('formulario/'.$registro->id) }}" method="POST">
+														<form action="{{ url('adminpanel/formulario/'.$registro->id) }}" method="POST">
 															{{csrf_field()}}
 															{{ method_field('DELETE') }}
 															<button class="btn btn-danger" type="submit" title="Borrar">
@@ -78,7 +78,7 @@
 														<button class="btn btn-warning" type="button" title="Editar" onclick="window.location='{{ url('adminpanel/formulario/edit_ap2/'.$registro->id) }}';">
 															<i class="fas fa-pencil-alt"></i>
 														</button>
-														<form action="{{ url('formulario/'.$registro->id) }}" method="POST">
+														<form action="{{ url('adminpanel/formulario/'.$registro->id) }}" method="POST">
 															{{csrf_field()}}
 															{{ method_field('DELETE') }}
 															<button class="btn btn-danger" type="submit" title="Borrar">

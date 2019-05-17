@@ -158,9 +158,9 @@ class FormularioController extends Controller
 
     public function destroy2($id)
     {
+        $registro = Registry::find($id);
         Registry::destroy($id);
-        return back();
+        return redirect('adminpanel/formulario/'.$registro->categoria);
     }
-
     
 }

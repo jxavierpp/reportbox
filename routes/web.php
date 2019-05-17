@@ -32,8 +32,9 @@ Route::middleware(['isAdmin'])->group(function () {
     Route::put('/adminpanel/formulario/store_ap2/{id}', 'FormularioController@update_accion_planeada2');
 
     //CRUD de reportes
-    Route::get('/adminpanel/reportes', 'ViewsController@index'); //Vista general de todos los reportes generados
-    Route::get('generatepdf', 'ViewsController@generatepdf');
+    Route::get('/adminpanel/reportes', 'ReportController@index');
+    Route::post('/adminpanel/reportes/generar', 'ReportController@create');
+    Route::delete('/adminpanel/reportes/{id}', 'ReportController@destroy');
 });
 
 //Grupo de Rutas Protegidas para Profesores
