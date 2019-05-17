@@ -5,7 +5,7 @@
         <div class="card">
             <div class="card-header">
                 <h4 style="position: absolute;"><strong>Lista de Profesores</strong></h4>
-                <a href="{{ URL::to('adminpanel/profesores/create') }}">
+                <a href="{{ URL::to('register') }}">
                     <button type="button" class="btn btn-sm btn-primary float-right">Registrar Profesor</button>
                 </a>
             </div>
