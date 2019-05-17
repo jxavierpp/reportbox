@@ -20,6 +20,11 @@ Route::middleware(['isAdmin'])->group(function () {
     //CRUD Categorias
     Route::get('/adminpanel/encargados/', 'CategoryController@index');
     
+    //Encargados
+    Route::put('/adminpanel/encargados/{id}', 'CategoryController@update');
+    Route::get('/adminpanel/encargados/edit/{id}', 'CategoryController@edit');
+    Route::get('/adminpanel/encargados/', 'CategoryController@index')->name('encargados');
+
     //CRUD de recomendaciones del formulario
     Route::get('/adminpanel/formulario/{id}', 'FormularioController@index2');
     Route::post('/adminpanel/formulario/store', 'FormularioController@store2');
@@ -52,3 +57,6 @@ Route::middleware(['isProfesor'])->group(function () {
 
 });
 
+//Rutas para subir archivos
+Route::get('file/{id}', 'FileController@index');
+Route::post('file/store', 'FileController@store')->name('file.store');

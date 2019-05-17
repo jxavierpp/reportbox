@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Registry;
+use App\Evidency;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,7 +17,7 @@ class FormularioController extends Controller
 	{
 		$this->middleware('auth');
     }
-    
+
     public function index()
     {
         try {
@@ -55,7 +56,7 @@ class FormularioController extends Controller
         $registro = Registry::find($id);
         return view('records.edit', compact('registro'));
     }
-    
+
     public function update(Request $request, $id)
     {
         // dd($request->nombre);
@@ -65,7 +66,7 @@ class FormularioController extends Controller
         $registro->recomendacion = $request->recomendacion;
         $registro->version = $request->identificador;
         $registro->save();
-        
+
         return redirect('formulario');
     }
 
@@ -85,13 +86,19 @@ class FormularioController extends Controller
         $registro->accion_planeada = $request->accion_planeada;
         $registro->duracion = $request->duracion;
         $registro->save();
-        
+
         return redirect('formulario');
     }
 
     public function destroy($id)
     {
-        Registry::destroy($id);
+        $registro = Registry::find($id);
+        $evidencias = Evidency::all()->where('registro', '=', $registro->id);
+        foreach($evidencias as $evidencia){
+            Evidency::destroy($evidencia->id);
+        }
+        Registry::destroy($registro->id);
+
         return back();
     }
 
@@ -128,14 +135,14 @@ class FormularioController extends Controller
         $registro = Registry::find($id);
         return view('panel.records.edit', compact('registro'));
     }
-    
+
     public function update2(Request $request, $id)
     {
         $registro = Registry::find($id);
         $registro->recomendacion = $request->recomendacion;
         $registro->version = $request->identificador;
         $registro->save();
-        
+
         return redirect('adminpanel/formulario/'.$registro->categoria);
     }
 
@@ -152,7 +159,7 @@ class FormularioController extends Controller
         $registro->accion_planeada = $request->accion_planeada;
         $registro->duracion = $request->duracion;
         $registro->save();
-        
+
         return redirect('adminpanel/formulario/'.$registro->categoria);
     }
 
@@ -162,5 +169,4 @@ class FormularioController extends Controller
         Registry::destroy($id);
         return redirect('adminpanel/formulario/'.$registro->categoria);
     }
-    
 }

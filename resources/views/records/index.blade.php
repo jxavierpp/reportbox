@@ -33,7 +33,8 @@
 														<form action="{{ url('formulario/'.$registro->id) }}" method="POST">
 															{{csrf_field()}}
 															{{ method_field('DELETE') }}
-															<button class="btn btn-danger" type="submit" title="Borrar">
+															<button class="btn btn-danger" type="submit" title="Borrar" onclick="
+															return confirm('¿Estás seguro? Esta acción eliminará todas las evidencias asociadas a esta recomendacion')">
 																<i class="fas fa-trash-alt"></i>
 															</button>
 														</form>
@@ -45,11 +46,12 @@
 							</div>
 								</table>
 								<div class="pb-2">
-										<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalCreate">Agregar Recomendación</button>
+									<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalCreate">Agregar Recomendación</button>
 								</div>
+
 							@else
-								<div class="alert alert-warning" role="alert">
-									No hay Recomendaciones para mostrar.
+								<div class="pb-2">
+									<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalCreate">Agregar Recomendación</button>
 								</div>
 							@endif
 						</div>
@@ -86,15 +88,18 @@
 																<i class="fas fa-trash-alt"></i>
 															</button>
 														</form>
+                										<button class="btn btn-dark" type="button" title="Evidencia" onclick="window.location='{{ url('file/'.$registro->id) }}';">
+															<i class="far fa-copy"></i>
+														</button>
 													</div>
 												</td>
 											</tr>
 										@endforeach
 									</tbody>
 								</table>
-								<div class="pb-2">
+								<div class="pb-2 float-right">
 									<a href="{{ URL::to('generatepdf/') }}">
-                    					<button type="button" class="btn btn-sm btn-primary float-right">Generar reporte</button>
+                    					<button type="button" class="btn btn-sm btn-primary">Generar reporte</button>
                 					</a>
                 				</div>
 							@else
@@ -141,6 +146,7 @@
 		</div>
 		</div>
 	</div>
+
 </div>
 
 @endsection

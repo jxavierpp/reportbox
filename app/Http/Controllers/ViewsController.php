@@ -19,6 +19,6 @@ class ViewsController extends Controller
     	$pdf = \App::make('dompdf.wrapper');
     	$pdf ->setPaper('A4', 'landscape');
     	$pdf->loadHTML($view);
-    	return $pdf->download('Reporte de categoria.pdf');
+    	return $pdf->download('Reporte.pdf');
     }
 }

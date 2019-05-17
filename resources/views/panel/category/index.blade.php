@@ -1,26 +1,49 @@
 @extends('layouts.app_admin')
 
+@section('titulo', 'Encargados')
+
 @section('content')
+
+<!DOCTYPE html>
+<html>
+
     <div id="content">
-        <div class="card mb-3">
+        <div class="card">
             <div class="card-header">
-                Profesores
+                <h4><strong>Lista de Encargados</strong></h4>
             </div>
+
             <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="/adminpanel/profesores" class="btn btn-primary">Ir a Profesores</a>
-            </div>
-        </div>
-        <div class="card mb-3">
-            <div class="card-header">
-                Reportes
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <table class = "table table-striped">
+                    <tr>
+                        <th>Categoría</th>
+                        <th>Encargado</th>
+                        <th>Acciones</th>
+                    </tr>
+                        
+                    @foreach ($categoriesInfo as $info)
+                        <tr>
+                            <td>{{$info->categoryName}}</td>
+
+                            @if($info->userName != null)
+                                <td>{{$info->userName}}</td>
+                            @else
+                                <td>Sin asignar</td>
+                            @endif
+
+                            <td>
+                                <button class="btn btn-warning" type="button" 
+                                title="Editar" 
+                                onclick="window.location='{{ url('adminpanel/encargados/edit/'.$info->categoryID) }}';">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    @endforeach
+                </table>
             </div>
         </div>
     </div>
+</html>
+
 @endsection
