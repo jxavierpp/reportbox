@@ -18,7 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name', 100);
             $table->bigInteger('encargado')->unsigned()->nullable();
-            $table->foreign('encargado')->references('id')->on('users');
+            $table->foreign('encargado')->references('id')->on('users')->onDelete("cascade");
             $table->timestamps();
         });
 

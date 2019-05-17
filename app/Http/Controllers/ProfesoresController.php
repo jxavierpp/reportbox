@@ -3,37 +3,54 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class ProfesoresController extends Controller
 {
     public function index()
     {
-        $usuarios = User::where('rol', '=', '1')->get();
+        $usersInfo = DB::table('users')
+        ->select('categories.encargado as categoryEncargado', 'categories.name as categoryName',
+         'users.name as userName', 'users.email as userEmail', 'users.id as userId', 'users.rol as rol')
+        ->leftJoin('categories', 'categories.encargado', '=', 'users.id')->where('rol', 1)
+        ->get();
+        
         // dd($profesores);
-        return view('panel.profesores.index', compact('usuarios'));
+        return view('panel.profesores.index', compact('usuarios', 'categorias', 'usersInfo'));
     }
 
     public function create()
     {
-        return view('panel.profesores.create');
+        $categorias = DB::table('categories')->select('id', 'name')->get();
+
+        return view('panel.profesores.create', compact('categorias'));
     }
 
     public function store(Request $request)
     {
         // dd($request);
         $this->validate($request, array(
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
+            'name' => ['required', 'string', 'max:255', 'alpha_spaces'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed', 'alpha_dash'],
         ));
 
         $profesor = new User();
         $profesor->name = $request->name;
         $profesor->email = $request->email;
-        $profesor->password = $request->password;
-        $profesor->rol = 1;
+        $profesor->password = Hash::make($request->password);
         $profesor->save();
+
+        $encargado = DB::table('users')->where('email', '=', $request->email)->select('id')->get();
+
+        if(!$request->categoria == ""){
+            Category::findOrFail($request->categoria)->update( array(
+                 'encargado' => $encargado[0]->id,
+              ) );
+        }
 
         return redirect('adminpanel/profesores/');
     }
@@ -49,9 +66,9 @@ class ProfesoresController extends Controller
     {
         // dd($request);
         $this->validate($request, array(
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
+            'name' => ['required', 'string', 'max:255', 'alpha_spaces'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'password' => ['required', 'string', 'min:8', 'confirmed', 'alpha_dash'],
         ));
 
         $profesor = User::find($id);

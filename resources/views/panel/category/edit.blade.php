@@ -34,7 +34,7 @@
 
                                 <select class="form-control" name='encargado'>
                                     
-                                    <option value = "null">Sin asignar</option>
+                                    <option value = "">Sin asignar</option>
                                    @foreach($usuarios as $usuario)
                                         <option value = "{{$usuario->id}}" <?php 
                                         if ($usuario->id == $categoria->encargado) 
