@@ -45,7 +45,7 @@
 							</div>
 								</table>
 								<div class="pb-2">
-										<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalCreate">Agregar Recomendación</button>
+									<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalCreate">Agregar Recomendación</button>
 								</div>
 							@else
 								<div class="alert alert-warning" role="alert">
@@ -141,6 +141,7 @@
 		</div>
 		</div>
 	</div>
+
 </div>
 
 @endsection
