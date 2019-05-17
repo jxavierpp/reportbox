@@ -3,6 +3,7 @@
     <link href="{{ asset('/css/dropzone.css') }}" rel="stylesheet">
 @endsection
 @section('content')
+    {{$registro_id}}
     <div class="container">
         <div class="row"    >
             <div class="panel panel-primary">
@@ -15,6 +16,7 @@
                         Drop your files here
                     </div>
                     <div class="dropzone-previews"></div>
+                    <input type="hidden" name="registro_id" value="{{$registro_id}}">
                     <button type="submit" class="btn btn-success" id="submit">Guardar</button>
                     {!! Form::close() !!}
                 </div>

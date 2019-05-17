@@ -57,5 +57,7 @@ Route::put('/adminpanel/formulario/store_ap2/{id}', 'FormularioController@update
 Route::get('/adminpanel/reportes', 'ViewsController@index'); //Vista general de todos los reportes generados
 Route::get('generatepdf', 'ViewsController@generatepdf');
 
+
 //Rutas para subir archivos
-Route::resource('file', 'FileController');
+Route::get('file/{id}', 'FileController@index');
+Route::post('file/store', 'FileController@store')->name('file.store');
