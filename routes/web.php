@@ -32,6 +32,7 @@ Route::put('/formulario/store_ap/{id}', 'FormularioController@update_accion_plan
 
 //Rutas del panel de administrador
 // Route::get('/adminpanel', 'HomeController@index_panel')->name('panel');
+
 Route::get('/adminpanel', 'CategoryController@index')->name('panel');
 Route::get('/adminpanel/profesores', 'profesoresController@index');
 Route::get('/adminpanel/profesores/create', 'profesoresController@create');
@@ -42,7 +43,10 @@ Route::delete('/adminpanel/profesores/{id}', 'profesoresController@destroy');
 
 //Route::resource('/adminpanel/encargados', 'CategoryController');
 //Route::resource('categories', 'CategoryController');
-Route::get('/adminpanel/encargados/', 'CategoryController@index');
+Route::put('/adminpanel/encargados/{id}', 'CategoryController@update');
+Route::get('/adminpanel/encargados/edit/{id}', 'CategoryController@edit');
+Route::get('/adminpanel/encargados/', 'CategoryController@index')->name('encargados');
+
 Route::get('/adminpanel/formulario/{id}', 'FormularioController@index2');
 Route::post('/adminpanel/formulario/store', 'FormularioController@store2');
 Route::get('/adminpanel/formulario/edit/{id}', 'FormularioController@edit2');
