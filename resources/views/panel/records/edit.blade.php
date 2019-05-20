@@ -24,7 +24,9 @@
 				</div>
 				<div class="card-footer text-muted">
 					<button type="submit" class="btn btn-primary">Guardar</button>
-                    <button type="button" class="btn btn-secondary" onclick="window.location='{{ url('adminpanel/formulario') }}';">Cancelar</button>
+                    <a href="{{ URL::to('/adminpanel/formulario/' .$registro->categoria) }}">
+                        <button type="button" class="btn btn-secondary" onclick="window.location='{{ url('adminpanel/formulario') }}';">Cancelar</button>
+                    </a>
                     </form>
 				</div>
 			</div>

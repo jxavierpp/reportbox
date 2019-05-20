@@ -10,9 +10,6 @@
 					<div class="card mb-3">
 						<h5 class="card-header">Recomendaciones</h5>
 						<div class="card-body">
-							<div class="pb-2">
-								<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalCreate">Agregar Recomendación</button>
-							</div>
 							@if(!($registros->isEmpty()))
 								<table class="table table-striped">
 									<thead>
@@ -36,9 +33,11 @@
 														<form action="{{ url('adminpanel/formulario/'.$registro->id) }}" method="POST">
 															{{csrf_field()}}
 															{{ method_field('DELETE') }}
-															<button class="btn btn-danger" type="submit" title="Borrar">
+															<button class="btn btn-danger" type="submit" title="Borrar" onclick="
+															return confirm('¿Estás seguro? Esta acción eliminará todas las evidencias asociadas a esta recomendacion')">
 																<i class="fas fa-trash-alt"></i>
 															</button>
+
 														</form>
 													</div>
 												</td>
@@ -46,6 +45,10 @@
 										@endforeach
 									</tbody>
 								</table>
+								<div class="pb-2">
+									<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalCreate">Agregar Recomendación</button>
+								</div>
+
 							@else
 								<div class="alert alert-warning" role="alert">
 									No hay Recomendaciones para mostrar.
@@ -61,8 +64,8 @@
 									<thead>
 										<tr>
 											<th scope="col">Identificador</th>
-											<th scope="col">Accion Planeada</th>
-											<th scope="col">Ejecucion en Meses</th>
+											<th scope="col">Acción Planeada</th>
+											<th scope="col">Ejecución en Meses</th>
 											<th scope="col">Acciones</th>
 										</tr>
 									</thead>
@@ -71,7 +74,11 @@
 											<tr>
 												<th scope="row">{{ $registro->version }}</th>
 												<td>{{ $registro->accion_planeada }}</td>
-												<td>{{ $registro->duracion }} Meses</td>
+												@if($registro->duracion == 0 || $registro->duracion > 1)
+													<td>{{ $registro->duracion }} Meses</td>
+												@else
+													<td>{{ $registro->duracion }} Mes</td>
+												@endif
 												<td>
 													@csrf
 													<div class="btn-group" role="group" aria-label="Basic example">
@@ -85,12 +92,16 @@
 																<i class="fas fa-trash-alt"></i>
 															</button>
 														</form>
+														<button class="btn btn-dark" type="button" title="Evidencia" onclick="window.location='{{ url('file/'.$registro->id) }}';">
+															<i class="far fa-copy"></i>
+														</button>
 													</div>
 												</td>
 											</tr>
 										@endforeach
 									</tbody>
 								</table>
+								<button type="button" class="btn btn-primary" onclick="window.location='{{ url('generatepdf/') }}';">Generar reporte</button>
 							@else
 								<div class="alert alert-warning" role="alert">
 									No hay Planes de Accion para mostrar.
@@ -119,14 +130,23 @@
 					{{ csrf_field() }}
 					<div class="form-group">
 						<label for="exampleInputEmail1">Identificador</label>
-						<input type="text" class="form-control" name="identificador">
+						<input type="text" class="form-control" @error('identificador') is-invalid @enderror name="identificador" required autocomplete="identificador">
+						@error('identificador')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Recomendación</label>
-						<input type="text" class="form-control" name="recomendacion">
+						<input type="text" class="form-control" @error('recomendacion') is-invalid @enderror name="recomendacion" required autocomplete="recomendacion">
+						@error('recomendacion')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
 					</div>
-					<input name="categoria_id" type="text" value="{{ Request()->id }}">
-					<!-- Display validation errors -->
+					<input name="categoria_id" type="hidden" value="{{ Request()->id }}">
 					@include('commons.errors')
 			</div>
 

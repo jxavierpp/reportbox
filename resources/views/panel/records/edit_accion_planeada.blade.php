@@ -31,4 +31,4 @@
 		</div>
 	</div>
 </div>
-@endsection1
+@endsection
