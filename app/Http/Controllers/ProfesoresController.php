@@ -34,7 +34,7 @@ class ProfesoresController extends Controller
         $this->validate($request, array(
             'name' => ['required', 'string', 'max:255', 'alpha_spaces'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed', 'alpha_dash'],
+            'password' => ['required', 'string', 'min:6', 'confirmed', 'alpha_dash'],
         ));
 
         $profesor = new User();
@@ -67,7 +67,7 @@ class ProfesoresController extends Controller
         $this->validate($request, array(
             'name' => ['required', 'string', 'max:255', 'alpha_spaces'],
             'email' => ['required', 'string', 'email', 'max:255'],
-            'password' => ['required', 'string', 'min:8', 'confirmed', 'alpha_dash'],
+            'password' => ['required', 'string', 'min:6', 'confirmed', 'alpha_dash'],
         ));
 
         $profesor = User::find($id);
