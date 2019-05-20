@@ -130,7 +130,7 @@
 					{{ csrf_field() }}
 					<div class="form-group">
 						<label for="exampleInputEmail1">Identificador</label>
-						<input type="text" class="form-control" @error('identificador') is-invalid @enderror name="identificador" required autocomplete="identificador">
+						<input type="text" class="form-control" @error('identificador') is-invalid @enderror name="identificador" required autofocus="identificador">
 						@error('identificador')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -146,7 +146,6 @@
                             </span>
                         @enderror
 					</div>
-				</form>
 				@include('commons.errors')
 			</div>
 		</div>
