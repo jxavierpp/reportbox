@@ -4,21 +4,16 @@
     </div>
 
     <ul class="list-unstyled components">
-        <li class="nav-item dropdown">
-            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                {{ Auth::user()->name }} <span class="caret"></span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
-                </a>
+        <li class="active">
+            <a href="#homeSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Administrador<span class="caret"></span></a>
+            <ul class="collapse list-unstyled" id="homeSubmenu2">
+                <li><a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Salir</a></li>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
-            </div>
+            </ul>
         </li>
+     
         <li><a href="/adminpanel/profesores">Profesores</a></li>
         <li><a href="/adminpanel/reportes">Reportes</a></li>
         <li><a href="/adminpanel/encargados">Encargados</a></li>
@@ -42,7 +37,7 @@
 </nav>
 
 <script>
-    fetch('http://reportbox.test/api/categorias')
+    fetch('http://localhost:8000/api/categorias')
     .then(response => response.json())
     .then(data => {
         console.log(data) // Prints result from `response.json()` in getRequest
