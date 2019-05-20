@@ -19,7 +19,7 @@ Route::middleware(['isAdmin'])->group(function () {
 
     //CRUD Categorias
     Route::get('/adminpanel/encargados/', 'CategoryController@index');
-    
+
     //Encargados
     Route::put('/adminpanel/encargados/{id}', 'CategoryController@update');
     Route::get('/adminpanel/encargados/edit/{id}', 'CategoryController@edit');
@@ -56,6 +56,9 @@ Route::middleware(['isProfesor'])->group(function () {
     Route::put('/formulario/store_ap/{id}', 'FormularioController@update_accion_planeada');
 
 });
+
+ //Generar reporte
+Route::get('generatepdf', 'ViewsController@generatepdf');
 
 //Rutas para subir archivos
 Route::get('file/{id}', 'FileController@index');

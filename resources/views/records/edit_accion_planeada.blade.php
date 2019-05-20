@@ -13,11 +13,17 @@
                         @method('PUT')
                         <div class="form-group">
                             <label for="exampleInputEmail1">Accion Planeada</label>
-                            <input type="text" class="form-control" name="accion_planeada" value="{{ $registro->accion_planeada }}">
+                            <input type="text" class="form-control" @error('accion_planeada') is-invalid @enderror name="accion_planeada" value="{{ $registro->accion_planeada }}" required autocomplete="accion_planeada" autofocus>
+                            @error('accion_planeada')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Ejecucion en Meses</label>
-                            <input type="number" class="form-control" name="duracion" value="{{ $registro->duracion }}" min="1" max="48">
+                            <input type="number" class="form-control" @error('duracion') is-invalid @enderror name="duracion" value="{{ $registro->duracion }}"  min="1" max="48" required autocomplete="duracion" autofocus>
                         </div>
                         <!-- Display validation errors -->
                         @include('commons.errors')

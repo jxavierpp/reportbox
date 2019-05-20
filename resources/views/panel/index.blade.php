@@ -1,4 +1,4 @@
-@extends('layouts.app_admin')
+p@extends('layouts.app_admin')
 
 @section('titulo', 'Encargados')
 
@@ -20,7 +20,7 @@
                         <th>Encargado</th>
                         <th>Acciones</th>
                     </tr>
-                        
+
                     @foreach ($categoriesInfo as $info)
                         <tr>
                             <td>{{$info->categoryName}}</td>
@@ -32,8 +32,8 @@
                             @endif
 
                             <td>
-                                <button class="btn btn-warning" type="button" 
-                                title="Editar" 
+                                <button class="btn btn-warning" type="button"
+                                title="Editar"
                                 onclick="window.location='{{ url('adminpanel/encargados/edit/'.$info->userID) }}';">
                                     <i class="fas fa-pencil-alt"></i>
                                 </button>

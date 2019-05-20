@@ -79,7 +79,7 @@
     margin: 0 0 0.2em 0;
     }
     </style>
-    
+
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -87,11 +87,9 @@
         <title>Reporte de categoria</title>
     </head>
     <body>
-        <header class="clearfix">
-            <h5 id="titulo">Reporte de categoria</h5>
-        </header>
+        <h5 id="titulo">Reporte de categoria</h5>
+    </header>
         <main>
-    
         <h5  id="categoria" class="card-header">Criterio/Recomendacion</h5>
         <table class="table table-striped">
         <thead>
@@ -101,13 +99,13 @@
             </tr>
         </thead>
         @foreach($datos as $dato)
-        <tr>
-        <td>{{ $dato->version }}</td>
-        <td>{{ $dato-> recomendacion }}</td>
-        </tr>
+            <tr>
+                <td>{{ $dato->version }}</td>
+                <td>{{ $dato->recomendacion }}</td>
+            </tr>
         @endforeach
-    </table>
-    
+        </table>
+
         <h5  id="categoria" class="card-header">Accion planeada</h5>
         <table class="table table-striped">
         <thead>
@@ -117,28 +115,28 @@
             </tr>
         </thead>
         @foreach($datos as $dato)
-        <tr>
-        <td>{{$dato-> version }}</td>
-        <td>{{ $dato->accion_planeada }}</td>
-        </tr>
+            <tr>
+                <td>{{$dato->version }}</td>
+                <td>{{ $dato->accion_planeada }}</td>
+            </tr>
         @endforeach
         </table>
-    
+
         <h5  id="categoria" class="card-header">Ejecucion en meses</h5>
         <table class="table table-striped">
         <thead>
             <tr>
-            <th id="categoria" scope="col">Identificador</th>
-            <th id="categoria" scope="col">Periodo</th>
+                <th id="categoria" scope="col">Identificador</th>
+                <th id="categoria" scope="col">Periodo</th>
             </tr>
         </thead>
         @foreach($datos as $dato)
-        <tr>
-        <td>{{ $dato-> version }}</td>
-        <td>{{ $dato-> duracion }} Meses</td>
-        </tr>
+            <tr>
+                <td>{{ $dato->version }}</td>
+                <td>{{ $dato->duracion }} Meses</td>
+            </tr>
         @endforeach
         </table>
-    
+
     </body>
-</html> 
+</html>

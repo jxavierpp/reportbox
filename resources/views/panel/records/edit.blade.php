@@ -14,12 +14,10 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Identificador</label>
                             <input type="text" class="form-control" name="identificador" value="{{ $registro->version }}">
-                            <small id="id_version" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Recomendación</label>
                             <input type="text" class="form-control" name="recomendacion" value="{{ $registro->recomendacion }}">
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
                         <!-- Display validation errors -->
                         @include('commons.errors')
@@ -27,7 +25,7 @@
 				<div class="card-footer text-muted">
 					<button type="submit" class="btn btn-primary">Guardar</button>
                     <button type="button" class="btn btn-secondary" onclick="window.location='{{ url('adminpanel/formulario') }}';">Cancelar</button>
-                    </form>	
+                    </form>
 				</div>
 			</div>
 		</div>

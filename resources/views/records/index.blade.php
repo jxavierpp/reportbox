@@ -130,23 +130,30 @@
 					{{ csrf_field() }}
 					<div class="form-group">
 						<label for="exampleInputEmail1">Identificador</label>
-						<input type="text" class="form-control" name="identificador">
+						<input type="text" class="form-control" @error('identificador') is-invalid @enderror name="identificador" required autocomplete="identificador">
+						@error('identificador')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Recomendación</label>
-						<input type="text" class="form-control" name="recomendacion">
+						<input type="text" class="form-control" @error('recomendacion') is-invalid @enderror name="recomendacion" required autocomplete="recomendacion">
+						@error('recomendacion')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
 					</div>
-					@include('commons.errors')
+				</form>
+				@include('commons.errors')
 			</div>
-
 		</div>
 		<div class="modal-footer d-flex justify-content-center">
 			<button type="submit" class="btn btn-primary">Guardar</button>
-			</form>
-		</div>
 		</div>
 	</div>
-
 </div>
 
 @endsection

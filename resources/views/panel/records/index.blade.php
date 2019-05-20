@@ -45,11 +45,11 @@
 											</tr>
 										@endforeach
 									</tbody>
-								</table> 
+								</table>
 							@else
 								<div class="alert alert-warning" role="alert">
 									No hay Recomendaciones para mostrar.
-								</div> 
+								</div>
 							@endif
 						</div>
 					</div>
@@ -94,7 +94,7 @@
 							@else
 								<div class="alert alert-warning" role="alert">
 									No hay Planes de Accion para mostrar.
-								</div> 
+								</div>
 							@endif
 						</div>
 					</div>
@@ -120,12 +120,10 @@
 					<div class="form-group">
 						<label for="exampleInputEmail1">Identificador</label>
 						<input type="text" class="form-control" name="identificador">
-						<small id="id_version" class="form-text text-muted">We'll never share your email with anyone else.</small>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Recomendación</label>
 						<input type="text" class="form-control" name="recomendacion">
-						<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 					</div>
 					<input name="categoria_id" type="text" value="{{ Request()->id }}">
 					<!-- Display validation errors -->
@@ -135,10 +133,10 @@
 		</div>
 		<div class="modal-footer d-flex justify-content-center">
 			<button type="submit" class="btn btn-primary">Guardar</button>
-			</form>	
+			</form>
 		</div>
 		</div>
 	</div>
 </div>
-        
+
 @endsection

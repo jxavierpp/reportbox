@@ -88,7 +88,7 @@
                         </div>
                         @include('commons.errors')
                 </div>
-    
+
             </div>
             <div class="modal-footer d-flex justify-content-center">
                 <button type="submit" class="btn btn-primary">Guardar</button>
