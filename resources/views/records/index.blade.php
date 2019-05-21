@@ -6,6 +6,7 @@
 		<div class="col-md-10 offset-md-1 pb-5">
 			<div class="card ">
 				<h5 class="card-header">Categoria</h5>
+
 				<div class="card-body">
 					<div class="card mb-3">
 						<h5 class="card-header">Recomendaciones</h5>
@@ -74,7 +75,11 @@
 											<tr>
 												<th scope="row">{{ $registro->version }}</th>
 												<td>{{ $registro->accion_planeada }}</td>
-												<td>{{ $registro->duracion }} Meses</td>
+												@if($registro->duracion == 0 || $registro->duracion > 1)
+													<td>{{ $registro->duracion }} Meses</td>
+												@else
+													<td>{{ $registro->duracion }} Mes</td>
+												@endif
 												<td>
 													@csrf
 													<div class="btn-group" role="group" aria-label="Basic example">
@@ -97,11 +102,7 @@
 										@endforeach
 									</tbody>
 								</table>
-								<div class="pb-2 float-right">
-									<a href="{{ URL::to('generatepdf/') }}">
-                    					<button type="button" class="btn btn-sm btn-primary">Generar reporte</button>
-                					</a>
-                				</div>
+								<button type="button" class="btn btn-primary" onclick="window.location='{{ url('generatepdf/') }}';">Generar reporte</button>
 							@else
 								<div class="alert alert-warning" role="alert">
 									No hay Planes de Accion para mostrar.
@@ -152,6 +153,7 @@
 		<div class="modal-footer d-flex justify-content-center">
 			<button type="submit" class="btn btn-primary">Guardar</button>
 		</div>
+	</form>
 	</div>
 </div>
 
