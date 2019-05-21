@@ -15,7 +15,7 @@
                     <tr>
                         <th>Nombre</th>
                         <th>Correo</th>
-                        <th>Categoria Asignada</th>
+                        <th>Categoría Asignada</th>
                         <th>Acciones</th>
                     </tr>
                     @foreach ($usersInfo as $usuario)

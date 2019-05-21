@@ -13,7 +13,7 @@
                 <div class="panel-body">
                     {!! Form::open(['route'=> 'file.store', 'method' => 'POST', 'files'=>'true', 'id' => 'my-dropzone' , 'class' => 'dropzone']) !!}
                     <div class="dz-message" style="height:200px;">
-                        Drop your files here
+                        Suelta tus archivos aquí
                     </div>
                     <div class="dropzone-previews"></div>
                     <input type="hidden" name="registro_id" value="{{$registro_id}}">

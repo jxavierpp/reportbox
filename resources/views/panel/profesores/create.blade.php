@@ -53,7 +53,7 @@
                     </div>
                     <div >
                         <strong>
-                        <label for="categoria" class="form-group">{{ __('Seleccione Una Categoria') }}</label>
+                        <label for="categoria" class="form-group">{{ __('Seleccione Una Categoría') }}</label>
                         </strong>
                     </div>
                     
