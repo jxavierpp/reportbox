@@ -34,7 +34,7 @@ class ProfesoresController extends Controller
         $this->validate($request, array(
             'name' => ['required', 'string', 'max:255', 'alpha_spaces'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed', 'alpha_dash'],
+            'password' => ['required', 'string', 'min:6', 'confirmed', 'alpha_dash'],
         ));
 
         $profesor = new User();
@@ -64,19 +64,36 @@ class ProfesoresController extends Controller
     public function update(Request $request, $id)
     {
         // dd($request);
-        $this->validate($request, array(
-            'name' => ['required', 'string', 'max:255', 'alpha_spaces'],
-            'email' => ['required', 'string', 'email', 'max:255'],
-            'password' => ['required', 'string', 'min:8', 'confirmed', 'alpha_dash'],
-        ));
-
         $profesor = User::find($id);
-        $profesor->name = $request->name;
-        $profesor->email = $request->email;
-        $profesor->password = $request->password;
-        $profesor->save();
+        $email = DB::table('users')->where('id', '=', $id)->select('email')->get();
+
+        if($email[0]->email == $request->email){
+            $this->validate($request, array(
+                'name' => ['required', 'string', 'max:255', 'alpha_spaces'],
+                'password' => ['required', 'string', 'min:6', 'confirmed', 'alpha_dash'],
+            ));
+
+            $profesor->name = $request->name;
+            $profesor->email = $request->email;
+            $profesor->password = $request->password;
+            $profesor->save();
+
+        }else{
+            $this->validate($request, array(
+                'name' => ['required', 'string', 'max:255', 'alpha_spaces'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:6', 'confirmed', 'alpha_dash'],
+            ));
+
+            $profesor->name = $request->name;
+            $profesor->email = $request->email;
+            $profesor->password = $request->password;
+            $profesor->save();
+
+        }
 
         return redirect('adminpanel/profesores/');
+        
     }
 
     public function destroy($id)
