@@ -166,7 +166,8 @@ class FormularioController extends Controller
     public function destroy2($id)
     {
         $registro = Registry::find($id);
-        Registry::destroy($id);
+        $registro->accion_planeada = "En espera de ser capturado.";
+        $registro->save();
         return redirect('adminpanel/formulario/'.$registro->categoria);
     }
 }

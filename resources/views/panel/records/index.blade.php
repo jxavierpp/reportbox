@@ -8,7 +8,11 @@
 				<h5 class="card-header">Categoria - {{ $categoria->name }}</h5>
 				<div class="card-body">
 					<div class="card mb-3">
-						<h5 class="card-header">Recomendaciones</h5>
+						<h5 class="card-header">Recomendaciones
+							<div class="pb-2 float-right">
+								<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalCreate">Agregar Recomendación</button>
+							</div>
+						</h5>
 						<div class="card-body">
 							@if(!($registros->isEmpty()))
 								<table class="table table-striped">
@@ -45,10 +49,6 @@
 										@endforeach
 									</tbody>
 								</table>
-								<div class="pb-2">
-									<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalCreate">Agregar Recomendación</button>
-								</div>
-
 							@else
 								<div class="alert alert-warning" role="alert">
 									No hay Recomendaciones para mostrar.
@@ -85,13 +85,15 @@
 														<button class="btn btn-warning" type="button" title="Editar" onclick="window.location='{{ url('adminpanel/formulario/edit_ap2/'.$registro->id) }}';">
 															<i class="fas fa-pencil-alt"></i>
 														</button>
-														<form action="{{ url('adminpanel/formulario/'.$registro->id) }}" method="POST">
-															{{csrf_field()}}
-															{{ method_field('DELETE') }}
-															<button class="btn btn-danger" type="submit" title="Borrar">
-																<i class="fas fa-trash-alt"></i>
-															</button>
-														</form>
+														@if($registro->duracion != "En espera de ser capturado.")
+															<form action="{{ url('adminpanel/formulario/'.$registro->id) }}" method="POST">
+																{{csrf_field()}}
+																{{ method_field('DELETE') }}
+																<button class="btn btn-danger" type="submit" title="Borrar">
+																	<i class="fas fa-trash-alt"></i>
+																</button>
+															</form>
+														@endif
 														<button class="btn btn-dark" type="button" title="Evidencia" onclick="window.location='{{ url('file/'.$registro->id) }}';">
 															<i class="far fa-copy"></i>
 														</button>
@@ -101,7 +103,7 @@
 										@endforeach
 									</tbody>
 								</table>
-								<button type="button" class="btn btn-primary" onclick="window.location='{{ url('generatepdf/') }}';">Generar reporte</button>
+								<button type="button" class="btn btn-primary float-right" onclick="window.location='{{ url('generatepdf/') }}';">Generar reporte</button>
 							@else
 								<div class="alert alert-warning" role="alert">
 									No hay Planes de Accion para mostrar.
