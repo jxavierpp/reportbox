@@ -48,6 +48,7 @@
                     <tr>
                         <th>Nombre</th>
                         <th>Correo</th>
+                        <th>Categoría Asignada</th>
                         <th>Acciones</th>
                     </tr>
                     @foreach ($usuarios as $usuario)

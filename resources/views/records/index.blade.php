@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class="col-md-10 offset-md-1 pb-5">
 			<div class="card">
-				<h5 class="card-header">Categoria</h5>
+				<h5 class="card-header">Categoría - {{ $nombre_categoria }}</h5>
 				<div class="card-body">
 					<div class="card mb-3">
 						<h5 class="card-header">Recomendaciones
@@ -38,7 +38,7 @@
 															{{csrf_field()}}
 															{{ method_field('DELETE') }}
 															<button class="btn btn-danger" type="submit" title="Borrar" onclick="
-															return confirm('¿Estás seguro? Esta acción eliminará todas las evidencias asociadas a esta recomendacion')">
+															return confirm('¿Estás seguro? Esta acción eliminará todas las evidencias asociadas a esta recomendación.')">
 																<i class="fas fa-trash-alt"></i>
 															</button>
 														</form>
@@ -63,8 +63,8 @@
 									<thead>
 										<tr>
 											<th scope="col">Identificador</th>
-											<th scope="col">Accion Planeada</th>
-											<th scope="col">Ejecucion en Meses</th>
+											<th scope="col">Acción Planeada</th>
+											<th scope="col">Ejecución en Meses</th>
 											<th scope="col">Acciones</th>
 										</tr>
 									</thead>
@@ -104,7 +104,7 @@
 								</table>
 							@else
 								<div class="alert alert-warning" role="alert">
-									No hay Planes de Accion para mostrar.
+									No hay Planes de Acción para mostrar.
 								</div>
 							@endif
 						</div>

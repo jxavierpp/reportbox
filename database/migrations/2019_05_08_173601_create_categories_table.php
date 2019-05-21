@@ -31,7 +31,7 @@ class CreateCategoriesTable extends Migration
             ['name' => 'Servicios de Apoyo para el Aprendizaje'],
             ['name' => 'Vinculación-Extensión'],
             ['name' => 'Investigación'],
-            ['name' => 'Infraestrutura y Equipamiento'],
+            ['name' => 'Infraestructura y Equipamiento'],
             ['name' => 'Gestión Administrativa y Financiación']
         ]);
 
