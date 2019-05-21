@@ -90,26 +90,37 @@ class FormularioController extends Controller
         return redirect('formulario');
     }
 
-    public function destroy($id)
+    public function destroy_1($id)
     {
         $registro = Registry::find($id);
         $evidencias = Evidency::all()->where('registro', '=', $registro->id);
-        foreach($evidencias as $evidencia){
-            Evidency::destroy($evidencia->id);
+        if($evidencias){
+            foreach($evidencias as $evidencia){
+                Evidency::destroy($evidencia->id);
+            }
         }
-        Registry::destroy($registro->id);
+        $registro->delete();
+        return redirect('formulario/');
+    }
+    
+    public function destroy_2($id)
+    {
+        $registro = Registry::find($id);
+        $registro->accion_planeada = "En espera de ser capturado.";
+        $registro->save();
 
-        return back();
+        return redirect('formulario/');
     }
 
     // PARA EL PANEL DE ADMINISTRADOR
     public function index2($categoria_id)
     {
         try {
+            $categorias = Category::all();
             $categoria = Category::find($categoria_id);
             $registros = $categoria->registros()->get();
 
-            return view('panel.records.index', ['registros' => $registros, 'categoria' => $categoria]);
+            return view('panel.records.index', ['registros' => $registros, 'categoria' => $categoria, 'categorias' => $categorias]);
         } catch (\Throwable $th) {
             dd($th);
         }
@@ -162,8 +173,19 @@ class FormularioController extends Controller
 
         return redirect('adminpanel/formulario/'.$registro->categoria);
     }
-
     public function destroy2($id)
+    {
+        $registro = Registry::find($id);
+        $evidencias = Evidency::all()->where('registro', '=', $registro->id);
+        if($evidencias){
+            foreach($evidencias as $evidencia){
+                Evidency::destroy($evidencia->id);
+            }
+        }
+        $registro->delete();
+        return redirect('adminpanel/formulario/'.$registro->categoria);
+    }
+    public function destroy3($id)
     {
         $registro = Registry::find($id);
         $registro->accion_planeada = "En espera de ser capturado.";

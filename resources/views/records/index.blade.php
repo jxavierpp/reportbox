@@ -4,12 +4,15 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-10 offset-md-1 pb-5">
-			<div class="card ">
+			<div class="card">
 				<h5 class="card-header">Categoria</h5>
-
 				<div class="card-body">
 					<div class="card mb-3">
-						<h5 class="card-header">Recomendaciones</h5>
+						<h5 class="card-header">Recomendaciones
+							<div class="pb-2 float-right">
+								<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalCreate">Agregar Recomendación</button>
+							</div>
+						</h5>
 						<div class="card-body">
 							@if(!($registros->isEmpty()))
 								<table class="table table-striped">
@@ -31,7 +34,7 @@
 														<button class="btn btn-warning" type="button" title="Editar" onclick="window.location='{{ url('formulario/edit/'.$registro->id) }}';">
 															<i class="fas fa-pencil-alt"></i>
 														</button>
-														<form action="{{ url('formulario/'.$registro->id) }}" method="POST">
+														<form action="{{ url('formulario1/'.$registro->id) }}" method="POST">
 															{{csrf_field()}}
 															{{ method_field('DELETE') }}
 															<button class="btn btn-danger" type="submit" title="Borrar" onclick="
@@ -44,15 +47,10 @@
 											</tr>
 										@endforeach
 									</tbody>
-							</div>
 								</table>
-								<div class="pb-2">
-									<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalCreate">Agregar Recomendación</button>
-								</div>
-
 							@else
-								<div class="pb-2">
-									<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalCreate">Agregar Recomendación</button>
+								<div class="alert alert-warning" role="alert">
+									No hay Recomendaciones para mostrar.
 								</div>
 							@endif
 						</div>
@@ -86,13 +84,15 @@
 														<button class="btn btn-warning" type="button" title="Editar" onclick="window.location='{{ url('formulario/edit_ap/'.$registro->id) }}';">
 															<i class="fas fa-pencil-alt"></i>
 														</button>
-														<form action="{{ url('formulario/'.$registro->id) }}" method="POST">
-															{{csrf_field()}}
-															{{ method_field('DELETE') }}
-															<button class="btn btn-danger" type="submit" title="Borrar">
-																<i class="fas fa-trash-alt"></i>
-															</button>
-														</form>
+														@if($registro->duracion != "En espera de ser capturado.")
+															<form action="{{ url('formulario2/'.$registro->id) }}" method="POST">
+																{{csrf_field()}}
+																{{ method_field('DELETE') }}
+																<button class="btn btn-danger" type="submit" title="Borrar">
+																	<i class="fas fa-trash-alt"></i>
+																</button>
+															</form>
+														@endif
                 										<button class="btn btn-dark" type="button" title="Evidencia" onclick="window.location='{{ url('file/'.$registro->id) }}';">
 															<i class="far fa-copy"></i>
 														</button>
@@ -102,7 +102,6 @@
 										@endforeach
 									</tbody>
 								</table>
-								<button type="button" class="btn btn-primary" onclick="window.location='{{ url('generatepdf/') }}';">Generar reporte</button>
 							@else
 								<div class="alert alert-warning" role="alert">
 									No hay Planes de Accion para mostrar.

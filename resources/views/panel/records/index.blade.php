@@ -34,14 +34,13 @@
 														<button class="btn btn-warning" type="button" title="Editar" onclick="window.location='{{ url('adminpanel/formulario/edit/'.$registro->id) }}';">
 															<i class="fas fa-pencil-alt"></i>
 														</button>
-														<form action="{{ url('adminpanel/formulario/'.$registro->id) }}" method="POST">
+														<form action="{{ url('adminpanel/formulario1/'.$registro->id) }}" method="POST">
 															{{csrf_field()}}
 															{{ method_field('DELETE') }}
 															<button class="btn btn-danger" type="submit" title="Borrar" onclick="
 															return confirm('¿Estás seguro? Esta acción eliminará todas las evidencias asociadas a esta recomendacion')">
 																<i class="fas fa-trash-alt"></i>
 															</button>
-
 														</form>
 													</div>
 												</td>
@@ -86,7 +85,7 @@
 															<i class="fas fa-pencil-alt"></i>
 														</button>
 														@if($registro->duracion != "En espera de ser capturado.")
-															<form action="{{ url('adminpanel/formulario/'.$registro->id) }}" method="POST">
+															<form action="{{ url('adminpanel/formulario2/'.$registro->id) }}" method="POST">
 																{{csrf_field()}}
 																{{ method_field('DELETE') }}
 																<button class="btn btn-danger" type="submit" title="Borrar">
@@ -94,7 +93,7 @@
 																</button>
 															</form>
 														@endif
-														<button class="btn btn-dark" type="button" title="Evidencia" onclick="window.location='{{ url('file/'.$registro->id) }}';">
+														<button class="btn btn-dark" type="button" title="Evidencia" onclick="window.location='{{ url('file/store2/'.$registro->id) }}';">
 															<i class="far fa-copy"></i>
 														</button>
 													</div>
@@ -103,7 +102,7 @@
 										@endforeach
 									</tbody>
 								</table>
-								<button type="button" class="btn btn-primary float-right" onclick="window.location='{{ url('generatepdf/') }}';">Generar reporte</button>
+								<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalCreate2">Generar Reporte</button>
 							@else
 								<div class="alert alert-warning" role="alert">
 									No hay Planes de Accion para mostrar.
@@ -149,6 +148,40 @@
                         @enderror
 					</div>
 					<input name="categoria_id" type="hidden" value="{{ Request()->id }}">
+					@include('commons.errors')
+			</div>
+
+		</div>
+		<div class="modal-footer d-flex justify-content-center">
+			<button type="submit" class="btn btn-primary">Guardar</button>
+			</form>
+		</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="modalCreate2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+		<div class="modal-header text-center">
+			<h4 class="modal-title w-100 font-weight-bold">Nuevo Reporte</h4>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body mx-3">
+			<div class="md-form mb-5">
+				<form action="/adminpanel/reportes/generar" method="POST">
+					{{ csrf_field() }}
+					<div class="form-group">
+						<label for="exampleInputEmail1">Nombre del reporte</label>
+						<input type="text" class="form-control" name="file_name" required>
+						@error('name')
+							<span class="invalid-feedback" role="alert">
+								<strong>{{ $message }}</strong>
+							</span>
+						@enderror
+					</div>
+					<input name="category_id" type="hidden" value="{{ Request()->id }}">
 					@include('commons.errors')
 			</div>
 

@@ -57,10 +57,6 @@ class ReportController extends Controller
     	return redirect('/adminpanel/reportes/');   
     }
 
-    public function show(Report $report)
-    {
-        //
-    }
 
     public function destroy($id)
     {
