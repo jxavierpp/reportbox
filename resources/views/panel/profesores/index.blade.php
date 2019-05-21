@@ -38,7 +38,8 @@
                                     <form action="{{ url('adminpanel/profesores/'.$usuario->userId) }}" method="POST">
                                         {{csrf_field()}}
                                         {{ method_field('DELETE') }}
-                                        <button class="btn btn-danger" type="submit" title="Borrar">
+                                        <button class="btn btn-danger" type="submit" title="Borrar" onclick="
+                                        return confirm('¿Estás seguro? ¡Esta acción eliminará a este profesor!')">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </form>
