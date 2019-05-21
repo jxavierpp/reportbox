@@ -18,7 +18,7 @@ class CreateRegistriesTable extends Migration
             $table->string('recomendacion', 100);
             $table->text('accion_planeada')->nullable();
             $table->string('version', 20);
-            $table->integer('duracion')->nullable();
+            $table->text('duracion')->nullable();
             $table->bigInteger('categoria')->nullable()->unsigned();
             $table->foreign('categoria')->references('id')->on('categories');
             $table->timestamps();
