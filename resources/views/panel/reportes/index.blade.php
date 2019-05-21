@@ -15,9 +15,9 @@
                     <table class="table table-striped">
                         <tr>
                             <th>Nombre</th>
-                            <th>Categoria</th>
+                            <th>Categoría</th>
                             <th>Tamaño</th>
-                            <th>Fecha de Creacion</th>
+                            <th>Fecha de Creación</th>
                             <th>Acciones</th>
                         </tr>
                         @foreach ($reportes as $reporte)
@@ -80,11 +80,11 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Categoria del reporte</label>
+                            <label for="exampleInputEmail1">Categoría del reporte</label>
                             <p><label for="categoria">
                                 <select class="form-control" name="category_id" required>
                                     <option value="">Sin asignar</option>
-                                    <option value="99">Todas las Categorias</option>
+                                    <option value="99">Todas las Categorías</option>
                                     @foreach($categorias as $categoria)
                                         <option value = "{{$categoria->id}}">
                                             {{ $categoria->name }}

@@ -29,7 +29,8 @@ class FormularioController extends Controller
             $categoria = Category::find($categoria_id);
             $registros = $categoria->registros()->get();
 
-            return view('records.index', ['registros' => $registros]);
+            return view('records.index', ['registros' => $registros, 
+                'nombre_categoria' => $categoria_tmp->name]);
         } catch (\Throwable $th) {
             dd($th);
         }
@@ -108,6 +109,7 @@ class FormularioController extends Controller
     {
         $registro = Registry::find($id);
         $registro->accion_planeada = "En espera de ser capturado.";
+        $registro->duracion = 0;
         $registro->save();
 
         return redirect('formulario/');
