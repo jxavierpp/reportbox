@@ -16,6 +16,8 @@ class CreateReportsTable extends Migration
         Schema::create('reports', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre');
+            $table->string('url')->nullable();
+            $table->string('size')->nullable();
             $table->bigInteger('categoria')->unsigned();
             $table->foreign('categoria')->references('id')->on('categories');
             $table->timestamps();

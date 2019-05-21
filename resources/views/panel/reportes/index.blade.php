@@ -9,14 +9,15 @@
                         <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalCreate">Generar Reporte</button>
                 </div>
             </div>
-
             <div class="card-body">
+               
                 @if(!($reportes->isEmpty()))
                     <table class="table table-striped">
                         <tr>
                             <th>Nombre</th>
                             <th>Categoria</th>
                             <th>Tamaño</th>
+                            <th>Fecha de Creacion</th>
                             <th>Acciones</th>
                         </tr>
                         @foreach ($reportes as $reporte)
@@ -28,20 +29,21 @@
                                     @else
                                         {{ $reporte->categoria()->first()['name'] }}</td>
                                     @endif
-                                <td>el tamaño</td>
+                                <td>{{ $reporte->size }} KB</td>
+                                <td>{{ $reporte->created_at }}</td>
                                 <td>
                                     @csrf
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                        <button class="btn btn-warning" type="button" title="Visualizar">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
+                                        <a class="btn btn-warning" type="button" title="Visualizar" href="{{url('/').$reporte->url}}" target="_blank" > <i class="fas fa-eye"></i> </a>
+                                        
                                         <form action="{{ url('/adminpanel/reportes/'.$reporte->id) }}" method="POST">
                                             {{csrf_field()}}
                                             {{ method_field('DELETE') }}
-                                            <button class="btn btn-danger" type="submit" title="Borrar">
+                                            <button class="btn btn-danger" type="submit" title="Borrar" onclick="return confirm('¿Estás seguro? Esta acción eliminará todo el reporte')">
                                                 <i class="fas fa-trash-alt"></i>
                                             </button>
                                         </form>
+
                                     </div>
                                 </td>
                             </tr>
@@ -70,11 +72,17 @@
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nombre del reporte</label>
-                            <input type="text" class="form-control" name="file_name">
+                            <input type="text" class="form-control" name="file_name" required>
+                            @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group">
+                            <label for="exampleInputEmail1">Categoria del reporte</label>
                             <p><label for="categoria">
-                                <select class="form-control" name="category_id">
+                                <select class="form-control" name="category_id" required>
                                     <option value="">Sin asignar</option>
                                     <option value="99">Todas las Categorias</option>
                                     @foreach($categorias as $categoria)
@@ -83,7 +91,11 @@
                                         </option>
                                     @endforeach
                                 </select>
-                                        {!! $errors->first('categoria', '<span class=error>:message</span>') !!}
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </label></p>
                         </div>
                         @include('commons.errors')
