@@ -18,7 +18,7 @@ class CreateReportsTable extends Migration
             $table->string('nombre');
             $table->string('url')->nullable();
             $table->string('size')->nullable();
-            $table->bigInteger('categoria')->unsigned();
+            $table->bigInteger('categoria')->unsigned()->nullable();
             $table->foreign('categoria')->references('id')->on('categories');
             $table->timestamps();
         });
