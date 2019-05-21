@@ -10,6 +10,6 @@ class Report extends Model
     //Un Reporte pertenece una categoria
     public function categoria()
     {
-        return $this->hasOne('App\Category','id');
+        return $this->BelongsTo('App\Category','categoria');
     }
 }
