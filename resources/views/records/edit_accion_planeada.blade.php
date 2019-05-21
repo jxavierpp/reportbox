@@ -22,9 +22,20 @@
 
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Ejecución en Meses</label>
-                            <input type="number" class="form-control" @error('duracion') is-invalid @enderror name="duracion" value="{{ $registro->duracion }}"  min="1" max="48" required autocomplete="duracion" autofocus>
+                            <label>Fecha límite</label>
+                            <input id="datepicker" class="form-control" @error('duracion') is-invalid @enderror name="duracion" value="{{$registro->duracion}}" required autocomplete="duracion">
+                            @error('duracion')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
+                        <script>
+                            $('#datepicker').datepicker({
+                                format: "dd/mm/yy",
+                                language: "es"
+                                });
+                        </script>
                         <!-- Display validation errors -->
                         @include('commons.errors')
 				</div>

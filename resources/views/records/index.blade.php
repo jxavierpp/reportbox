@@ -63,8 +63,8 @@
 									<thead>
 										<tr>
 											<th scope="col">Identificador</th>
-											<th scope="col">Acción Planeada</th>
-											<th scope="col">Ejecución en Meses</th>
+                      <th scope="col">Acción Planeada</th>
+											<th scope="col">Fecha límite</th>
 											<th scope="col">Acciones</th>
 										</tr>
 									</thead>
@@ -73,11 +73,7 @@
 											<tr>
 												<th scope="row">{{ $registro->version }}</th>
 												<td>{{ $registro->accion_planeada }}</td>
-												@if($registro->duracion == 0 || $registro->duracion > 1)
-													<td>{{ $registro->duracion }} Meses</td>
-												@else
-													<td>{{ $registro->duracion }} Mes</td>
-												@endif
+												<td>{{ $registro->duracion }}</td>
 												<td>
 													@csrf
 													<div class="btn-group" role="group" aria-label="Basic example">
