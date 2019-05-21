@@ -9,6 +9,9 @@ class isAdmin
 {
     public function handle($request, Closure $next, $guard = null)
     {
+        if(!Auth::check()) {
+            return redirect('/login');
+        }
         //Si el usuario esta logiado
         if (Auth::user() !== null) {
             //Si el usuario es admin
