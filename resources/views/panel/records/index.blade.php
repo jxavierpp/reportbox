@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class="col-md-12 pb-3 pt-3">
 			<div class="card">
-				<h5 class="card-header">Categoria - {{ $categoria->name }}</h5>
+				<h5 class="card-header">Categoría - {{ $categoria->name }}</h5>
 				<div class="card-body">
 					<div class="card mb-3">
 						<h5 class="card-header">Recomendaciones
@@ -38,7 +38,7 @@
 															{{csrf_field()}}
 															{{ method_field('DELETE') }}
 															<button class="btn btn-danger" type="submit" title="Borrar" onclick="
-															return confirm('¿Estás seguro? Esta acción eliminará todas las evidencias asociadas a esta recomendacion')">
+															return confirm('¿Estás seguro? Esta acción eliminará todas las evidencias asociadas a esta recomendación.')">
 																<i class="fas fa-trash-alt"></i>
 															</button>
 														</form>
@@ -64,7 +64,7 @@
 										<tr>
 											<th scope="col">Identificador</th>
 											<th scope="col">Acción Planeada</th>
-											<th scope="col">Ejecución en Meses</th>
+											<th scope="col">Fecha límite</th>
 											<th scope="col">Acciones</th>
 										</tr>
 									</thead>
@@ -73,11 +73,7 @@
 											<tr>
 												<th scope="row">{{ $registro->version }}</th>
 												<td>{{ $registro->accion_planeada }}</td>
-												@if($registro->duracion == 0 || $registro->duracion > 1)
-													<td>{{ $registro->duracion }} Meses</td>
-												@else
-													<td>{{ $registro->duracion }} Mes</td>
-												@endif
+												<td>{{ $registro->duracion }}</td>
 												<td>
 													@csrf
 													<div class="btn-group" role="group" aria-label="Basic example">
@@ -93,7 +89,7 @@
 																</button>
 															</form>
 														@endif
-														<button class="btn btn-dark" type="button" title="Evidencia" onclick="window.location='{{ url('file/store2/'.$registro->id) }}';">
+														<button class="btn btn-dark" type="button" title="Evidencia" onclick="window.location='{{ url('file/'.$registro->id) }}';">
 															<i class="far fa-copy"></i>
 														</button>
 													</div>
@@ -105,7 +101,7 @@
 								<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalCreate2">Generar Reporte</button>
 							@else
 								<div class="alert alert-warning" role="alert">
-									No hay Planes de Accion para mostrar.
+									No hay Planes de Acción para mostrar.
 								</div>
 							@endif
 						</div>

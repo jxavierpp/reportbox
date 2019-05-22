@@ -3,7 +3,7 @@
 	<!-- Form Error List -->
 	<div class="form-group">
 		<div class="alert alert-danger" role="alert">
-			<strong>Whoops! Something went wrong!</strong>
+			<strong>¡Whoops! ¡Algo salió mal!</strong>
 			<ul>
 				@foreach($errors->all() as $error)
 					<li>{{ $error }}</li>

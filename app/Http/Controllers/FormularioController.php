@@ -29,7 +29,8 @@ class FormularioController extends Controller
             $categoria = Category::find($categoria_id);
             $registros = $categoria->registros()->get();
 
-            return view('records.index', ['registros' => $registros]);
+            return view('records.index', ['registros' => $registros, 
+                'nombre_categoria' => $categoria_tmp->name]);
         } catch (\Throwable $th) {
             dd($th);
         }
@@ -44,7 +45,7 @@ class FormularioController extends Controller
         $registro->recomendacion = $request->recomendacion;
         $registro->version = $request->identificador;
         $registro->accion_planeada = "En espera de ser capturado.";
-        $registro->duracion = 0;
+        $registro->duracion = "En espera de ser capturado.";
         $registro->categoria = $categoria->id;
         $registro->save();
         return back();
@@ -80,6 +81,7 @@ class FormularioController extends Controller
     public function update_accion_planeada(Request $request, $id)
     {
         // dd($request->nombre);
+
         $categoria = $request->user()->categoria()->first();
 
         $registro = Registry::find($id);
@@ -102,11 +104,12 @@ class FormularioController extends Controller
         $registro->delete();
         return redirect('formulario/');
     }
-    
+
     public function destroy_2($id)
     {
         $registro = Registry::find($id);
         $registro->accion_planeada = "En espera de ser capturado.";
+        $registro->duracion = 0;
         $registro->save();
 
         return redirect('formulario/');
@@ -134,7 +137,7 @@ class FormularioController extends Controller
         $registro->recomendacion = $request->recomendacion;
         $registro->version = $request->identificador;
         $registro->accion_planeada = "En espera de ser capturado.";
-        $registro->duracion = 0;
+        $registro->duracion = "En espera de ser capturado`.";
         $registro->categoria = $request->categoria_id;
         $registro->save();
         return back();
