@@ -3,21 +3,19 @@
     <link href="{{ asset('/css/dropzone.css') }}" rel="stylesheet">
 @endsection
 @section('content')
-    {{$registro_id}}
     <div class="container">
         <div class="row"    >
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    Subir archivos
+                    Dropzone
                 </div>
                 <div class="panel-body">
                     {!! Form::open(['route'=> 'file.store', 'method' => 'POST', 'files'=>'true', 'id' => 'my-dropzone' , 'class' => 'dropzone']) !!}
-                    <div class="dz-message" style="height:200px;">
+                    <div class="dz-message" style="height:100%;">
                         Drop your files here
                     </div>
                     <div class="dropzone-previews"></div>
-                    <input type="hidden" name="registro_id" value="{{$registro_id}}">
-                    <button type="submit" class="btn btn-success" id="submit">Guardar</button>
+                    <button type="submit" class="btn btn-success" id="submit">Save</button>
                     {!! Form::close() !!}
                 </div>
             </div>
@@ -43,14 +41,14 @@
                     myDropzone.processQueue();
                 });
                 this.on("addedfile", function(file) {
-                    alert("Archivo añadido");
+                    alert("file uploaded");
                 });
 
-                this.on("Completado", function(file) {
+                this.on("complete", function(file) {
                     myDropzone.removeFile(file);
                 });
 
-                this.on("Exito!",
+                this.on("success",
                     myDropzone.processQueue.bind(myDropzone)
                 );
             }
