@@ -75,7 +75,7 @@ class ProfesoresController extends Controller
 
             $profesor->name = $request->name;
             $profesor->email = $request->email;
-            $profesor->password = $request->password;
+            $profesor->password = Hash::make($request->password);
             $profesor->save();
 
         }else{
