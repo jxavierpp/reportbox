@@ -32,7 +32,7 @@
 
                             <td>
 
-                                <select class="form-control" name='encargado'>
+                                <select class="form-control @error('encargado') is-invalid @enderror" name='encargado' >
                                     
                                     <option value = "">Sin asignar</option>
                                    @foreach($usuarios as $usuario)
@@ -45,13 +45,15 @@
                                    @endforeach
 
                                 </select>
+                                @error('encargado')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
 
                             </td>
 
                             </div>
-
-                            <!-- Display validation errors -->
-                            @include('commons.errors')
                     </table>
                 </div>
             </div>

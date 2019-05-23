@@ -30,13 +30,29 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $categoria = Category::findOrFail($id);
+        // $categorias = Category::all();
         $usuarios = DB::table('users')->select('id', 'name')->get();
+        // $users_temp = User::all();
+        // $users = [];
+        // foreach($users as $user){
+        //     foreach($categorias as $categoria){
+        //         if($user->id == $categoria->encargado){
+        //             return 
+        //             array_push($users_ban, $user);
+        //         }
+        //     }
+        // }
+        // return $users;
 
         return view('panel.category.edit', compact('categoria', 'usuarios'));
     }
 
     public function update(Request $request, $id)
     {
+        $this->validate($request, array(
+            'encargado' => ['string', 'max:255', 'unique:categories'],
+        ));
+
         Category::findOrFail($id)->update( $request->all() );
 
         return redirect()->route('encargados');
