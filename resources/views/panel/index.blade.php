@@ -1,4 +1,4 @@
-p@extends('layouts.app_admin')
+@extends('layouts.app_admin')
 
 @section('titulo', 'Encargados')
 
@@ -21,12 +21,12 @@ p@extends('layouts.app_admin')
                         <th>Acciones</th>
                     </tr>
 
-                    @foreach ($categoriesInfo as $info)
+                    @foreach ($categorias as $categoria)
                         <tr>
-                            <td>{{$info->categoryName}}</td>
+                            <td>{{$categoria->categoryName}}</td>
 
-                            @if($info->userName != null)
-                                <td>{{$info->userName}}</td>
+                            @if($categoria->encargado != null)
+                                <td>{{$categoria->usuario()->name}}</td>
                             @else
                                 <td>Sin asignar</td>
                             @endif
@@ -34,7 +34,7 @@ p@extends('layouts.app_admin')
                             <td>
                                 <button class="btn btn-warning" type="button"
                                 title="Editar"
-                                onclick="window.location='{{ url('adminpanel/encargados/edit/'.$info->userID) }}';">
+                                onclick="window.location='{{ url('adminpanel/encargados/edit/'.$categoria->usuario()->id }}';">
                                     <i class="fas fa-pencil-alt"></i>
                                 </button>
                             </td>

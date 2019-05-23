@@ -12,7 +12,7 @@ class Category extends Model
     //Una categoria pertenece a un usuario
     public function usuario()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User', 'encargado');
     }
 
     //Una categoria puede tener muchos registros

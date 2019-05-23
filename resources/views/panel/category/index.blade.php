@@ -6,7 +6,6 @@
 
 <!DOCTYPE html>
 <html>
-
     <div id="content">
         <div class="card">
             <div class="card-header">
@@ -20,21 +19,21 @@
                         <th>Encargado</th>
                         <th>Acciones</th>
                     </tr>
-                        
-                    @foreach ($categoriesInfo as $info)
-                        <tr>
-                            <td>{{$info->categoryName}}</td>
 
-                            @if($info->userName != null)
-                                <td>{{$info->userName}}</td>
+                    @foreach ($categorias as $categoria)
+                        <tr>
+                            <td>{{$categoria->name}}</td>
+
+                            @if($categoria->encargado != null)
+                                <td>{{ $categoria->usuario()->first()['name'] }}</td>
                             @else
                                 <td>Sin asignar</td>
                             @endif
 
                             <td>
-                                <button class="btn btn-warning" type="button" 
-                                title="Editar" 
-                                onclick="window.location='{{ url('adminpanel/encargados/edit/'.$info->categoryID) }}';">
+                                <button class="btn btn-warning" type="button"
+                                title="Editar"
+                                onclick="window.location='{{ url('adminpanel/encargados/edit/'.$categoria->id) }}';">
                                     <i class="fas fa-pencil-alt"></i>
                                 </button>
                             </td>
