@@ -35,7 +35,7 @@
                 </table>
             </div>
         </div>
-        <br></br>
+        <br>
         <div class="card">
             <div class="card-header">
                 <h4 style="position: absolute;"><strong>Lista de Profesores</strong></h4>
@@ -48,7 +48,6 @@
                     <tr>
                         <th>Nombre</th>
                         <th>Correo</th>
-                        <th>Categoría Asignada</th>
                         <th>Acciones</th>
                     </tr>
                     @foreach ($usuarios as $usuario)
