@@ -78,7 +78,7 @@
     font-weight: normal;
     margin: 0 0 0.2em 0;
     }
-    .page_break { page-break-before: always; }
+    .page_break { page-break-after: always; }
     </style>
 
     <!DOCTYPE html>
@@ -91,6 +91,7 @@
         <h5 id="titulo">Reporte General</h5>
     </header>
         @if(!($registros1->isEmpty()))
+        <div class="page_break">
             <h1>Categoria - {{ $categoria1->name }}</h1>
             <table class="table table-striped">
                 <thead>
@@ -116,6 +117,7 @@
                     <img src="{{ public_path().$evidencia->url }}" width="100px" height="100px">
                 @endforeach
             @endforeach
+        </div>
         @endif
         @if(!($registros2->isEmpty()))
         <div class="page_break">
@@ -350,7 +352,7 @@
         </div>
         @endif
         @if(!($registros10->isEmpty()))
-        <div class="page_break">
+        
             <h1>Categoria - {{ $categoria10->name }}</h1>
             <table class="table table-striped">
                 <thead>
@@ -376,7 +378,6 @@
                     <img src="{{ public_path().$evidencia->url }}" width="100px" height="100px">
                 @endforeach
             @endforeach
-        </div>
         @endif
     </body>
 </html>
