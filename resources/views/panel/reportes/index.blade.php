@@ -30,7 +30,7 @@
                                         {{ $reporte->categoria()->first()['name'] }}</td>
                                     @endif
                                 <td>{{ $reporte->size }} KB</td>
-                                <td>{{ Carbon::parse($reporte->created_at)->toFormattedDateString() }}</td>
+                                <td>{{ Carbon::parse($reporte->created_at)->toDayDateTimeString() }}</td>
                                 <td>
                                     @csrf
                                     <div class="btn-group" role="group" aria-label="Basic example">

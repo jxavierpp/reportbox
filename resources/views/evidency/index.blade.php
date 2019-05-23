@@ -24,7 +24,7 @@
                                 <td>{{ $evidencia->name }}</td>
                                 <td>{{ $evidencia->format }}</td>
                                 <td>{{ $evidencia->size }} KB</td>
-                                <td>{{ Carbon::parse($evidencia->created_at)->toFormattedDateString() }}</td>
+                                <td>{{ Carbon::parse($evidencia->created_at)->toDayDateTimeString() }}</td>
                                 <td>
                                     @csrf
                                     <div class="btn-group" role="group" aria-label="Basic example">
