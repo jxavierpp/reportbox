@@ -84,68 +84,41 @@
     <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Reporte de categoria</title>
+    <title>Reporte de categoria - {{ $categoria->name }}</title>
     </head>
     <body>
-        <h5 id="titulo">Reporte de categoría</h5>
+        <h5 id="titulo">Reporte de Categoria</h5>
     </header>
-        <main>
-        <h5  id="categoria" class="card-header">Criterio/Recomendación</h5>
+        <h1>{{ $categoria->name }}</h1>
         <table class="table table-striped">
-        <thead>
-            <tr>
-            <th id="categoria" scope="col">Identificador</th>
-            <th id="categoria" scope="col">Recomendación</th>
-            </tr>
-        </thead>
-        @foreach($datos as $dato)
-            <tr>
-                <td>{{ $dato->version }}</td>
-                <td>{{ $dato->recomendacion }}</td>
-            </tr>
-        @endforeach
+            <thead>
+                <tr>
+                    <th id="categoria" scope="col">Identificador</th>
+                    <th id="categoria" scope="col">Recomendación</th>
+                    <th id="categoria" scope="col">Accion planeada</th>
+                    <th id="categoria" scope="col">Fecha limite</th>
+                    {{-- <th id="categoria" scope="col">Evidencias</th> --}}
+                </tr>
+            </thead>
+            @foreach($registros as $registro)
+                <tr>
+                    <td>{{ $registro->version }}</td>
+                    <td>{{ $registro->recomendacion }}</td>
+                    <td>{{ $registro->accion_planeada }}</td>
+                    <td>{{ $registro->duracion }}</td>
+                    {{-- <td> 
+                        @foreach ($registro->evidencias()->get() as $evidencia)
+                            <img src="{{ public_path().$evidencia->url }}" width="100px" height="100px">
+                        @endforeach
+                    </td> --}}
+                </tr>
+            @endforeach
         </table>
-
-        {{-- <table border="1px" style="table-layout:fixed;">
-            <tr>
-                <th style="width:5%;">5%</th>
-                <th style="width:10%;">10%</th>
-                <th style="width:25%;">25%</th>
-                <th style="width:60%;">60%</th>
-            </tr>
-        </table> --}}
-
-        <h5  id="categoria" class="card-header">Acción planeada</h5>
-        <table class="table table-striped">
-        <thead>
-            <tr>
-            <th id="categoria" scope="col">Identificador</th>
-            <th id="categoria" scope="col">Recomendación</th>
-            </tr>
-        </thead>
-        @foreach($datos as $dato)
-            <tr>
-                <td>{{$dato->version }}</td>
-                <td>{{ $dato->accion_planeada }}</td>
-            </tr>
+        <h5 id="titulo">Evidencias</h5>
+        @foreach($registros as $registro)
+            @foreach ($registro->evidencias()->get() as $evidencia)
+                <img src="{{ public_path().$evidencia->url }}" width="100px" height="100px">
+            @endforeach
         @endforeach
-        </table>
-
-        <h5  id="categoria" class="card-header">Ejecución en meses</h5>
-        <table class="table table-striped">
-        <thead>
-            <tr>
-                <th id="categoria" scope="col">Identificador</th>
-                <th id="categoria" scope="col">Periodo</th>
-            </tr>
-        </thead>
-        @foreach($datos as $dato)
-            <tr>
-                <td>{{ $dato->version }}</td>
-                <td>{{ $dato->duracion }} Meses</td>
-            </tr>
-        @endforeach
-        </table>
-
     </body>
 </html>
