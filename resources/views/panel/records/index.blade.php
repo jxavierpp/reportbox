@@ -89,7 +89,7 @@
 																</button>
 															</form>
 														@endif
-														<button class="btn btn-dark" type="button" title="Evidencia" onclick="window.location='{{ url('file/'.$registro->id) }}';">
+														<button class="btn btn-dark" type="button" title="Evidencias" onclick="window.location='{{ url('/adminpanel/evidencias/'.$registro->id) }}';">
 															<i class="far fa-copy"></i>
 														</button>
 													</div>

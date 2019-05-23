@@ -15,6 +15,6 @@ class Registry extends Model
     //Un Registro puede tener muchas evidencias
     public function evidencias()
     {
-        return $this->hasMany('App\Evidency');
+        return $this->hasMany('App\Evidency', 'registro');
     }
 }

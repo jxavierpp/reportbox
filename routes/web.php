@@ -42,6 +42,10 @@ Route::middleware(['isAdmin'])->group(function () {
     Route::post('/adminpanel/reportes/generar', 'ReportController@create');
     Route::delete('/adminpanel/reportes/{id}', 'ReportController@destroy');
 
+    //CRUD de Evidencias Admin
+    Route::get('/adminpanel/evidencias/{id}', 'EvidencyController@index');
+    Route::post('/adminpanel/evidencias/store', 'EvidencyController@store');
+    Route::delete('/adminpanel/evidencias/{id}', 'EvidencyController@destroy');
 });
 
 //Grupo de Rutas Protegidas para Profesores
@@ -58,6 +62,11 @@ Route::middleware(['isProfesor'])->group(function () {
     Route::get('/formulario/edit_ap/{id}', 'FormularioController@edit_accion_planeada');
     Route::put('/formulario/store_ap/{id}', 'FormularioController@update_accion_planeada');
 
+    //CRUD de Evidencias profesores
+    Route::get('/evidencias/{id}', 'EvidencyController@index1');
+    Route::post('/evidencias/store', 'EvidencyController@store1');
+    Route::delete('/evidencias/{id}', 'EvidencyController@destroy1');
+
 });
 
  //Generar reporte
@@ -67,3 +76,6 @@ Route::get('generatepdf', 'ViewsController@generatepdf');
 Route::get('file/{id}', 'FileController@index');
 Route::post('file/store', 'FileController@store')->name('file.store');
 Route::post('file/store2', 'FileController@store2')->name('file.store');
+
+
+

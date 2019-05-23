@@ -3,83 +3,102 @@
 namespace App\Http\Controllers;
 
 use App\Evidency;
+use App\Registry;
+use File;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class EvidencyController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function __construct()
     {
-        //
+        if(!File::exists(public_path()."/evidencias")) {
+            File::makeDirectory(public_path()."/evidencias");
+        }
+        
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function index($registro_id)
     {
-        //
+
+        $registro = Registry::find($registro_id);
+        $evidencias = $registro->evidencias()->get();
+        return view('panel.evidency.index', compact('registro', $registro, 'evidencias', $evidencias));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        //obtenemos el campo file definido en el formulario
+        $file = $request->file('file');
+
+        //obtenemos el nombre del archivo
+        $nombre = $file->getClientOriginalName();
+
+        //obtener la extension del archivo
+        $extension = $file->getClientOriginalExtension();
+
+        //movemos el archivo a una carpeta local
+        $request->file('file')->move(public_path()."\\evidencias\\", $nombre);  
+
+        //obtener el tamano del archivo
+        $size = File::size(public_path()."\\evidencias\\".$nombre);
+        
+        $evidencia = new Evidency();
+        $evidencia->name = $nombre;
+        $evidencia->format = $extension;
+        $evidencia->url = '/evidencias/'.$nombre;
+        $evidencia->size = $size;
+        $evidencia->registro = $request->registro_id;
+        $evidencia->save();
+
+        return redirect('/adminpanel/evidencias/'.$request->registro_id);   
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Evidency  $evidency
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Evidency $evidency)
+    public function destroy($id)
     {
-        //
+        Evidency::destroy($id);
+        return back();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Evidency  $evidency
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Evidency $evidency)
+
+    public function index1($registro_id)
     {
-        //
+        $registro = Registry::find($registro_id);
+        $evidencias = $registro->evidencias()->get();
+        return view('evidency.index', compact('registro', $registro, 'evidencias', $evidencias));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Evidency  $evidency
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Evidency $evidency)
+    public function store1(Request $request)
     {
-        //
+        //obtenemos el campo file definido en el formulario
+        $file = $request->file('file');
+
+        //obtenemos el nombre del archivo
+        $nombre = $file->getClientOriginalName();
+
+        //obtener la extension del archivo
+        $extension = $file->getClientOriginalExtension();
+
+        //movemos el archivo a una carpeta local
+        $request->file('file')->move(public_path()."\\evidencias\\", $nombre);  
+
+        //obtener el tamano del archivo
+        $size = File::size(public_path()."\\evidencias\\".$nombre);
+        
+        $evidencia = new Evidency();
+        $evidencia->name = $nombre;
+        $evidencia->format = $extension;
+        $evidencia->url = '/evidencias/'.$nombre;
+        $evidencia->size = $size;
+        $evidencia->registro = $request->registro_id;
+        $evidencia->save();
+
+        return redirect('/evidencias/'.$request->registro_id);   
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Evidency  $evidency
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Evidency $evidency)
+    public function destroy1($id)
     {
-        //
+        Evidency::destroy($id);
+        return back();
     }
 }

@@ -63,7 +63,7 @@
 									<thead>
 										<tr>
 											<th scope="col">Identificador</th>
-                      <th scope="col">Acción Planeada</th>
+                      						<th scope="col">Acción Planeada</th>
 											<th scope="col">Fecha límite</th>
 											<th scope="col">Acciones</th>
 										</tr>
@@ -89,7 +89,7 @@
 																</button>
 															</form>
 														@endif
-                										<button class="btn btn-dark" type="button" title="Evidencia" onclick="window.location='{{ url('file/'.$registro->id) }}';">
+                										<button class="btn btn-dark" type="button" title="Evidencias" onclick="window.location='{{ url('/evidencias/'.$registro->id) }}';">
 															<i class="far fa-copy"></i>
 														</button>
 													</div>

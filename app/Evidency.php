@@ -10,7 +10,7 @@ class Evidency extends Model
     //Una evidencia pertenece a un ragistro
     public function registro()
     {
-        return $this->belongsTo('App\Registry');
+        return $this->belongsTo('App\Registry', 'registro');
     }
 
 }

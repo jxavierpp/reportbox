@@ -15,12 +15,14 @@ class CreateEvidenciesTable extends Migration
     {
         Schema::create('evidencies', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nombre');
-            $table->string('documento_url');
-            $table->bigInteger('registro')->unsigned();
+            $table->string('name');
+            $table->string('format')->nullable();
+            $table->string('url')->nullable();
+            $table->string('size')->nullable();
+            $table->bigInteger('registro')->unsigned()->nullable();
             $table->foreign('registro')->references('id')->on('registries');
             $table->timestamps();
-        });
+        }); 
     }
 
     /**
