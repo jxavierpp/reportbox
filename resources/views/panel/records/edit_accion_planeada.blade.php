@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class="col-md-12 pb-3 pt-3">
 			<div class="card ">
-				<h5 class="card-header">Editar Accion Planeada</h5>
+				<h5 class="card-header">Editar Acción Planeada</h5>
 
 				<div class="card-body">
                     <form action={{ url('adminpanel/formulario/store_ap2/'.$registro->id) }} method="POST">

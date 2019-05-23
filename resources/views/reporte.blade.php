@@ -87,10 +87,10 @@
         <title>Reporte de categoria</title>
     </head>
     <body>
-        <h5 id="titulo">Reporte de categoria</h5>
+        <h5 id="titulo">Reporte de categoría</h5>
     </header>
         <main>
-        <h5  id="categoria" class="card-header">Criterio/Recomendacion</h5>
+        <h5  id="categoria" class="card-header">Criterio/Recomendación</h5>
         <table class="table table-striped">
         <thead>
             <tr>
@@ -106,7 +106,7 @@
         @endforeach
         </table>
 
-        <h5  id="categoria" class="card-header">Accion planeada</h5>
+        <h5  id="categoria" class="card-header">Acción planeada</h5>
         <table class="table table-striped">
         <thead>
             <tr>
@@ -122,7 +122,7 @@
         @endforeach
         </table>
 
-        <h5  id="categoria" class="card-header">Ejecucion en meses</h5>
+        <h5  id="categoria" class="card-header">Ejecución en meses</h5>
         <table class="table table-striped">
         <thead>
             <tr>

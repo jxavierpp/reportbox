@@ -12,14 +12,9 @@ class ProfesoresController extends Controller
 {
     public function index()
     {
-        $usersInfo = DB::table('users')
-        ->select('categories.encargado as categoryEncargado', 'categories.name as categoryName',
-         'users.name as userName', 'users.email as userEmail', 'users.id as userId', 'users.rol as rol')
-        ->leftJoin('categories', 'categories.encargado', '=', 'users.id')->where('rol', 1)
-        ->get();
-        
-        // dd($profesores);
-        return view('panel.profesores.index', compact('usuarios', 'categorias', 'usersInfo'));
+        $usuarios = DB::select('SELECT * FROM users');
+
+        return view('panel.profesores.index', compact('usuarios'));
     }
 
     public function create()
