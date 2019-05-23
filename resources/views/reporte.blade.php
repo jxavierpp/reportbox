@@ -106,6 +106,15 @@
         @endforeach
         </table>
 
+        {{-- <table border="1px" style="table-layout:fixed;">
+            <tr>
+                <th style="width:5%;">5%</th>
+                <th style="width:10%;">10%</th>
+                <th style="width:25%;">25%</th>
+                <th style="width:60%;">60%</th>
+            </tr>
+        </table> --}}
+
         <h5  id="categoria" class="card-header">Acción planeada</h5>
         <table class="table table-striped">
         <thead>
