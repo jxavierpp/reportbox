@@ -11,6 +11,7 @@ class Evidency extends Model
     public function registro()
     {
         return $this->belongsTo('App\Registry', 'registro');
+        
     }
 
 }
