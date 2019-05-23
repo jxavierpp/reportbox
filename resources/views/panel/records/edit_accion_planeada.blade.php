@@ -40,7 +40,7 @@
 				</div>
 				<div class="card-footer text-muted">
 					<button type="submit" class="btn btn-primary">Guardar</button>
-                    <button type="button" class="btn btn-secondary" onclick="window.location='{{ url('formulario/' .$registro->id) }}';">Cancelar</button>
+                    <button type="submit" class="btn btn-secondary" onclick="window.location='{{ url('formulario/' .$registro->id) }}';">Cancelar</button>
                     </form>
 				</div>
 			</div>
