@@ -45,7 +45,7 @@ class FormularioController extends Controller
         $registro->recomendacion = $request->recomendacion;
         $registro->version = $request->identificador;
         $registro->accion_planeada = "En espera de ser capturado.";
-        $registro->duracion = "Por definir";
+        $registro->duracion = "Por definir.";
         $registro->categoria = $categoria->id;
         $registro->save();
         return back();
@@ -109,7 +109,7 @@ class FormularioController extends Controller
     {
         $registro = Registry::find($id);
         $registro->accion_planeada = "En espera de ser capturado.";
-        $registro->duracion = 0;
+        $registro->duracion = "Por definir.";
         $registro->save();
 
         return redirect('formulario/');
@@ -137,7 +137,7 @@ class FormularioController extends Controller
         $registro->recomendacion = $request->recomendacion;
         $registro->version = $request->identificador;
         $registro->accion_planeada = "En espera de ser capturado.";
-        $registro->duracion = "Por definir";
+        $registro->duracion = "Por definir.";
         $registro->categoria = $request->categoria_id;
         $registro->save();
         return back();
